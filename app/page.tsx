@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
@@ -32,49 +34,95 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { useState, useEffect } from "react"
 
 export default function InmobiliariaRosario() {
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [showFullNav, setShowFullNav] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY
+      const newIsScrolled = scrollTop > 100
+
+      // Debounce para hacer la transición más suave
+      if (newIsScrolled !== isScrolled) {
+        setTimeout(() => {
+          setIsScrolled(newIsScrolled)
+        }, 50)
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [isScrolled])
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b sticky top-0 z-50">
-        <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-2">
-              <Home className="h-8 w-8 text-blue-600" />
-              <div>
-                <h1 className="text-xl font-bold text-gray-900">Inmobiliaria Rosario</h1>
-                <p className="text-xs text-gray-600">Tu hogar te está esperando</p>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out ${
+          isScrolled && !showFullNav
+            ? "bg-transparent backdrop-blur-none border-transparent"
+            : "bg-white/70 backdrop-blur-md shadow-sm border-b border-gray-200 hover:bg-white/95 hover:shadow-lg"
+        }`}
+        onMouseEnter={() => setShowFullNav(true)}
+        onMouseLeave={() => setShowFullNav(false)}
+      >
+        <div className="container mx-auto px-4 py-4 relative">
+          {/* Navbar completa */}
+          <div
+            className={`transition-all duration-700 ease-out transform ${
+              isScrolled && !showFullNav
+                ? "opacity-0 pointer-events-none scale-95 -translate-y-2"
+                : "opacity-100 scale-100 translate-y-0"
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <Home className="h-8 w-8 text-blue-600" />
+                <div>
+                  <h1 className="text-xl font-bold text-gray-900">Inmobiliaria Rosario</h1>
+                  <p className="text-xs text-gray-600">Tu hogar te está esperando</p>
+                </div>
+              </div>
+              <nav className="hidden md:flex items-center space-x-6">
+                <Link href="#propiedades" className="text-gray-700 hover:text-blue-600 transition-colors">
+                  Propiedades
+                </Link>
+                <Link href="#servicios" className="text-gray-700 hover:text-blue-600 transition-colors">
+                  Servicios
+                </Link>
+                <Link href="#nosotros" className="text-gray-700 hover:text-blue-600 transition-colors">
+                  Nosotros
+                </Link>
+                <Link href="#contacto" className="text-gray-700 hover:text-blue-600 transition-colors">
+                  Contacto
+                </Link>
+              </nav>
+              <div className="flex items-center space-x-2">
+                <Button variant="outline" size="sm">
+                  <Phone className="h-4 w-4 mr-2" />
+                  341-123-4567
+                </Button>
+                <Button size="sm" className="bg-green-600 hover:bg-green-700">
+                  <WhatsApp className="h-4 w-4 mr-2" />
+                  WhatsApp
+                </Button>
               </div>
             </div>
+          </div>
 
-            <nav className="hidden md:flex items-center space-x-6">
-              <Link href="#propiedades" className="text-gray-700 hover:text-blue-600 transition-colors">
-                Propiedades
-              </Link>
-              <Link href="#servicios" className="text-gray-700 hover:text-blue-600 transition-colors">
-                Servicios
-              </Link>
-              <Link href="#nosotros" className="text-gray-700 hover:text-blue-600 transition-colors">
-                Nosotros
-              </Link>
-              <Link href="#blog" className="text-gray-700 hover:text-blue-600 transition-colors">
-                Blog
-              </Link>
-              <Link href="#contacto" className="text-gray-700 hover:text-blue-600 transition-colors">
-                Contacto
-              </Link>
-            </nav>
-
-            <div className="flex items-center space-x-2">
-              <Button variant="outline" size="sm">
-                <Phone className="h-4 w-4 mr-2" />
-                341-123-4567
-              </Button>
-              <Button size="sm" className="bg-green-600 hover:bg-green-700">
-                <WhatsApp className="h-4 w-4 mr-2" />
-                WhatsApp
-              </Button>
+          {/* Solo la casita cuando está scrolled - posicionada en el centro absoluto */}
+          <div
+            className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-out ${
+              isScrolled && !showFullNav
+                ? "opacity-100 scale-100 translate-y-0"
+                : "opacity-0 pointer-events-none scale-75 translate-y-2"
+            }`}
+          >
+            <div className="bg-white/90 backdrop-blur-md rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-110 cursor-pointer hover:bg-white/95">
+              <Home className="h-6 w-6 text-blue-600 transition-colors duration-200" />
             </div>
           </div>
         </div>
@@ -91,7 +139,6 @@ export default function InmobiliariaRosario() {
             <p className="text-xl md:text-2xl mb-8 text-blue-100">
               Más de 15 años conectando familias con sus hogares soñados en Rosario y alrededores
             </p>
-
             {/* Search Bar */}
             <div className="bg-white rounded-lg p-6 shadow-xl max-w-4xl mx-auto">
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
@@ -106,7 +153,6 @@ export default function InmobiliariaRosario() {
                     <SelectItem value="local">Local Comercial</SelectItem>
                   </SelectContent>
                 </Select>
-
                 <Select>
                   <SelectTrigger>
                     <SelectValue placeholder="Operación" />
@@ -116,7 +162,6 @@ export default function InmobiliariaRosario() {
                     <SelectItem value="alquiler">Alquiler</SelectItem>
                   </SelectContent>
                 </Select>
-
                 <Select>
                   <SelectTrigger>
                     <SelectValue placeholder="Zona" />
@@ -129,10 +174,8 @@ export default function InmobiliariaRosario() {
                     <SelectItem value="roldan">Roldán</SelectItem>
                   </SelectContent>
                 </Select>
-
                 <Input placeholder="Precio máximo" className="text-gray-900" />
               </div>
-
               <Button className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-3">
                 <Search className="h-5 w-5 mr-2" />
                 Buscar Propiedades
@@ -175,7 +218,6 @@ export default function InmobiliariaRosario() {
               Descubre las mejores oportunidades inmobiliarias en Rosario y alrededores
             </p>
           </div>
-
           <div className="flex justify-center mb-8">
             <div className="flex items-center space-x-4 bg-gray-100 rounded-lg p-2">
               <Button variant="default" size="sm">
@@ -193,7 +235,6 @@ export default function InmobiliariaRosario() {
               </Button>
             </div>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Property Card 1 */}
             <Card className="overflow-hidden hover:shadow-lg transition-shadow">
@@ -245,7 +286,6 @@ export default function InmobiliariaRosario() {
                 <Button className="w-full">Ver Detalles</Button>
               </CardContent>
             </Card>
-
             {/* Property Card 2 */}
             <Card className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative">
@@ -296,7 +336,6 @@ export default function InmobiliariaRosario() {
                 <Button className="w-full">Ver Detalles</Button>
               </CardContent>
             </Card>
-
             {/* Property Card 3 */}
             <Card className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative">
@@ -347,7 +386,6 @@ export default function InmobiliariaRosario() {
               </CardContent>
             </Card>
           </div>
-
           <div className="text-center mt-12">
             <Button size="lg" variant="outline">
               Ver Todas las Propiedades
@@ -365,7 +403,6 @@ export default function InmobiliariaRosario() {
               Ofrecemos soluciones integrales para todas tus necesidades inmobiliarias
             </p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -376,7 +413,6 @@ export default function InmobiliariaRosario() {
                 Te acompañamos en todo el proceso de compra o venta de tu propiedad con asesoramiento profesional.
               </p>
             </Card>
-
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Key className="h-8 w-8 text-blue-600" />
@@ -386,7 +422,6 @@ export default function InmobiliariaRosario() {
                 Gestión completa de alquileres, desde la búsqueda hasta la administración de contratos.
               </p>
             </Card>
-
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Calculator className="h-8 w-8 text-blue-600" />
@@ -396,7 +431,6 @@ export default function InmobiliariaRosario() {
                 Valuaciones precisas y actualizadas de propiedades realizadas por profesionales certificados.
               </p>
             </Card>
-
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <FileText className="h-8 w-8 text-blue-600" />
@@ -406,7 +440,6 @@ export default function InmobiliariaRosario() {
                 Soporte legal completo para todas las operaciones inmobiliarias y trámites documentales.
               </p>
             </Card>
-
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <TrendingUp className="h-8 w-8 text-blue-600" />
@@ -416,7 +449,6 @@ export default function InmobiliariaRosario() {
                 Asesoramiento especializado en inversiones inmobiliarias y oportunidades de negocio.
               </p>
             </Card>
-
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                 <Users className="h-8 w-8 text-blue-600" />
@@ -482,7 +514,6 @@ export default function InmobiliariaRosario() {
               La satisfacción de nuestros clientes es nuestra mejor carta de presentación
             </p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="p-6">
               <div className="flex items-center mb-4">
@@ -502,7 +533,6 @@ export default function InmobiliariaRosario() {
                 </div>
               </div>
             </Card>
-
             <Card className="p-6">
               <div className="flex items-center mb-4">
                 {[...Array(5)].map((_, i) => (
@@ -521,7 +551,6 @@ export default function InmobiliariaRosario() {
                 </div>
               </div>
             </Card>
-
             <Card className="p-6">
               <div className="flex items-center mb-4">
                 {[...Array(5)].map((_, i) => (
@@ -544,22 +573,21 @@ export default function InmobiliariaRosario() {
         </div>
       </section>
 
-      {/* Sell/Rent Your Property */}
+      {/* Sell/Rent Your Property - MODIFIED SECTION */}
       <section className="py-16 bg-blue-600 text-white">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6">¿Querés vender o alquilar tu propiedad?</h2>
             <p className="text-xl mb-8 text-blue-100">
-              Obtené una tasación gratuita y descubrí el verdadero valor de tu propiedad
+              Te ayudamos a obtener el mejor precio y encontrar los inquilinos ideales para tu propiedad
             </p>
-
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
               <div className="text-center">
                 <div className="bg-blue-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                   <Calculator className="h-8 w-8" />
                 </div>
-                <h3 className="text-lg font-semibold mb-2">Tasación Gratuita</h3>
-                <p className="text-blue-100">Valuación profesional sin costo</p>
+                <h3 className="text-lg font-semibold mb-2">Valuación Profesional</h3>
+                <p className="text-blue-100">Análisis de mercado detallado</p>
               </div>
               <div className="text-center">
                 <div className="bg-blue-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -576,84 +604,14 @@ export default function InmobiliariaRosario() {
                 <p className="text-blue-100">Te guiamos en todo el proceso</p>
               </div>
             </div>
-
             <Button size="lg" variant="secondary" className="text-blue-600">
-              Solicitar Tasación Gratuita
+              Contactar Ahora
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Blog Section */}
-      <section id="blog" className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Blog y Novedades</h2>
-            <p className="text-xl text-gray-600">Mantente informado sobre el mercado inmobiliario de Rosario</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="overflow-hidden">
-              <Image
-                src="/placeholder.svg?height=200&width=400"
-                alt="Blog post"
-                width={400}
-                height={200}
-                className="w-full h-48 object-cover"
-              />
-              <CardContent className="p-6">
-                <Badge className="mb-3">Mercado</Badge>
-                <h3 className="text-xl font-semibold mb-3">Tendencias del mercado inmobiliario en Rosario 2024</h3>
-                <p className="text-gray-600 mb-4">
-                  Análisis completo de las tendencias y oportunidades del mercado inmobiliario rosarino...
-                </p>
-                <div className="text-sm text-gray-500">15 de Marzo, 2024</div>
-              </CardContent>
-            </Card>
-
-            <Card className="overflow-hidden">
-              <Image
-                src="/placeholder.svg?height=200&width=400"
-                alt="Blog post"
-                width={400}
-                height={200}
-                className="w-full h-48 object-cover"
-              />
-              <CardContent className="p-6">
-                <Badge className="mb-3">Consejos</Badge>
-                <h3 className="text-xl font-semibold mb-3">Guía para compradores primerizos</h3>
-                <p className="text-gray-600 mb-4">
-                  Todo lo que necesitás saber antes de comprar tu primera propiedad...
-                </p>
-                <div className="text-sm text-gray-500">10 de Marzo, 2024</div>
-              </CardContent>
-            </Card>
-
-            <Card className="overflow-hidden">
-              <Image
-                src="/placeholder.svg?height=200&width=400"
-                alt="Blog post"
-                width={400}
-                height={200}
-                className="w-full h-48 object-cover"
-              />
-              <CardContent className="p-6">
-                <Badge className="mb-3">Inversiones</Badge>
-                <h3 className="text-xl font-semibold mb-3">Las mejores zonas para invertir en Rosario</h3>
-                <p className="text-gray-600 mb-4">
-                  Descubrí cuáles son las zonas con mayor potencial de crecimiento...
-                </p>
-                <div className="text-sm text-gray-500">5 de Marzo, 2024</div>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div className="text-center mt-8">
-            <Button variant="outline">Ver Todos los Artículos</Button>
-          </div>
-        </div>
-      </section>
-
+      
       {/* Contact Section */}
       <section id="contacto" className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
@@ -661,11 +619,9 @@ export default function InmobiliariaRosario() {
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Contactanos</h2>
             <p className="text-xl text-gray-600">Estamos aquí para ayudarte con todas tus necesidades inmobiliarias</p>
           </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div>
               <h3 className="text-2xl font-semibold mb-6">Información de Contacto</h3>
-
               <div className="space-y-6">
                 <div className="flex items-start">
                   <MapPin className="h-6 w-6 text-blue-600 mr-4 mt-1" />
@@ -674,7 +630,6 @@ export default function InmobiliariaRosario() {
                     <p className="text-gray-600">Av. Pellegrini 1234, Rosario, Santa Fe</p>
                   </div>
                 </div>
-
                 <div className="flex items-start">
                   <Phone className="h-6 w-6 text-blue-600 mr-4 mt-1" />
                   <div>
@@ -682,7 +637,6 @@ export default function InmobiliariaRosario() {
                     <p className="text-gray-600">+54 341 123-4567</p>
                   </div>
                 </div>
-
                 <div className="flex items-start">
                   <Mail className="h-6 w-6 text-blue-600 mr-4 mt-1" />
                   <div>
@@ -690,7 +644,6 @@ export default function InmobiliariaRosario() {
                     <p className="text-gray-600">info@inmobiliariarosario.com</p>
                   </div>
                 </div>
-
                 <div className="flex items-start">
                   <MessageCircle className="h-6 w-6 text-blue-600 mr-4 mt-1" />
                   <div>
@@ -699,7 +652,6 @@ export default function InmobiliariaRosario() {
                   </div>
                 </div>
               </div>
-
               <div className="mt-8">
                 <h4 className="font-semibold mb-4">Horarios de Atención</h4>
                 <div className="text-gray-600">
@@ -708,7 +660,6 @@ export default function InmobiliariaRosario() {
                   <p>Domingos: Cerrado</p>
                 </div>
               </div>
-
               <div className="mt-8">
                 <h4 className="font-semibold mb-4">Seguinos en Redes</h4>
                 <div className="flex space-x-4">
@@ -736,7 +687,6 @@ export default function InmobiliariaRosario() {
                 </div>
               </div>
             </div>
-
             <div>
               <Card className="p-6">
                 <h3 className="text-2xl font-semibold mb-6">Envianos un Mensaje</h3>
@@ -751,17 +701,14 @@ export default function InmobiliariaRosario() {
                       <Input placeholder="Tu apellido" />
                     </div>
                   </div>
-
                   <div>
                     <label className="block text-sm font-medium mb-2">Email</label>
                     <Input type="email" placeholder="tu@email.com" />
                   </div>
-
                   <div>
                     <label className="block text-sm font-medium mb-2">Teléfono</label>
                     <Input placeholder="Tu teléfono" />
                   </div>
-
                   <div>
                     <label className="block text-sm font-medium mb-2">Tipo de Consulta</label>
                     <Select>
@@ -772,17 +719,15 @@ export default function InmobiliariaRosario() {
                         <SelectItem value="compra">Quiero Comprar</SelectItem>
                         <SelectItem value="venta">Quiero Vender</SelectItem>
                         <SelectItem value="alquiler">Quiero Alquilar</SelectItem>
-                        <SelectItem value="tasacion">Solicitar Tasación</SelectItem>
+                        <SelectItem value="consulta">Consulta General</SelectItem>
                         <SelectItem value="otro">Otro</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
-
                   <div>
                     <label className="block text-sm font-medium mb-2">Mensaje</label>
                     <Textarea placeholder="Contanos en qué podemos ayudarte..." rows={4} />
                   </div>
-
                   <Button className="w-full" size="lg">
                     Enviar Mensaje
                   </Button>
@@ -832,7 +777,6 @@ export default function InmobiliariaRosario() {
                 </Button>
               </div>
             </div>
-
             <div>
               <h4 className="text-lg font-semibold mb-4">Servicios</h4>
               <ul className="space-y-2 text-gray-400">
@@ -863,7 +807,6 @@ export default function InmobiliariaRosario() {
                 </li>
               </ul>
             </div>
-
             <div>
               <h4 className="text-lg font-semibold mb-4">Zonas</h4>
               <ul className="space-y-2 text-gray-400">
@@ -894,7 +837,6 @@ export default function InmobiliariaRosario() {
                 </li>
               </ul>
             </div>
-
             <div>
               <h4 className="text-lg font-semibold mb-4">Contacto</h4>
               <div className="space-y-2 text-gray-400">
@@ -905,7 +847,6 @@ export default function InmobiliariaRosario() {
               </div>
             </div>
           </div>
-
           <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
             <p>&copy; 2024 Inmobiliaria Rosario. Todos los derechos reservados.</p>
           </div>
