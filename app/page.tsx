@@ -144,13 +144,25 @@ export default function InmobiliariaRosario() {
   autoPlay
   loop
   muted
-  playsInline
   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 min-w-full min-h-full w-auto h-auto object-cover"
 >
   
-  <source src="/video-hero.webm" type="video/mp4" />
+  <source src="videos/video-desktop.webm" type="video/mp4" />
   Tu navegador no soporta el elemento de video.
 </video>
+
+  {/* --- Video para Mobile (el optimizado) --- */}
+  {/* Se muestra solo en celulares y se oculta en pantallas más grandes */}
+  <video
+    autoPlay
+    loop
+    muted
+    playsInline
+    className="block md:hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full object-cover"
+  >
+    <source src="videos/video-mobile.webm" type="video/webm" />
+    Tu navegador no soporta el elemento de video.
+  </video>
 
 
 {/* Capa oscura semitransparente para mejorar la legibilidad del texto sobre el video */}
