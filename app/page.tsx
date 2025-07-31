@@ -10,9 +10,7 @@ import {
   MapPin,
   Phone,
   Mail,
-  Star,
   Users,
-  Award,
   TrendingUp,
   Building,
   Key,
@@ -77,37 +75,39 @@ export default function InmobiliariaRosario() {
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0">
-                  <Image
-                    src="/logo-3.png"
-                    alt="Laura Senmache Negocios Inmobiliarios"
-                    width={48}
-                    height={48}
-                    className="h-12 w-12 object-contain"
-                  />
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-3">
+                    <Image
+                      src="/logo-3.png"
+                      alt="Laura Senmache Negocios Inmobiliarios"
+                      width={48}
+                      height={48}
+                      className="h-12 w-12 object-contain"
+                    />
+                    <div className="hidden sm:block">
+                      <h3 className="text-xl font-bold text-gray-900">Laura Senmache</h3>
+                      <p className="text-sm text-gray-600">Negocios Inmobiliarios</p>
+                    </div>
+                  </div>
                 </div>
               </div>
 
-              <nav className="hidden md:flex items-center space-x-6">
-                <Link href="#propiedades" className="text-gray-700 hover:text-blue-600 transition-colors">
+              <nav className="hidden md:flex items-center space-x-6 ">
+                <Link href="#inicio" className="text-gray-700 hover:text-blue-600 transition-colors font-bold">
+                  Inicio
+                </Link>
+                <Link href="#propiedades" className="text-gray-700 hover:text-blue-600 transition-colors font-bold">
                   Propiedades
                 </Link>
-                <Link href="#servicios" className="text-gray-700 hover:text-blue-600 transition-colors">
+                <Link href="#servicios" className="text-gray-700 hover:text-blue-600 transition-colors font-bold">
                   Servicios
                 </Link>
-                <Link href="#nosotros" className="text-gray-700 hover:text-blue-600 transition-colors">
-                  Nosotros
-                </Link>
-                <Link href="#contacto" className="text-gray-700 hover:text-blue-600 transition-colors">
+                <Link href="#contacto" className="text-gray-700 hover:text-blue-600 transition-colors font-bold ">
                   Contacto
                 </Link>
               </nav>
 
               <div className="flex items-center space-x-2">
-                <Button variant="outline" size="sm">
-                  <Phone className="h-4 w-4 mr-2" />
-                  341-123-4567
-                </Button>
                 <Button size="sm" className="bg-green-600 hover:bg-green-700">
                   <WhatsApp className="h-4 w-4 mr-2" />
                   WhatsApp
@@ -118,7 +118,7 @@ export default function InmobiliariaRosario() {
 
           {/* Solo el logo cuando está scrolled - usando el logo-3 más pequeño */}
           <div
-            className={`absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-out ${
+            className={`absolute top-[10px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-out ${
               isScrolled && !showFullNav
                 ? "opacity-100 scale-100 translate-y-0"
                 : "opacity-0 pointer-events-none scale-75 translate-y-2"
@@ -138,65 +138,81 @@ export default function InmobiliariaRosario() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-r from-blue-900 to-blue-700 text-white min-h-screen flex items-center">
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="container mx-auto px-4 relative z-10 py-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">
-              Encuentra tu hogar ideal en <span className="text-blue-300">Rosario</span>
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-blue-100">
-              Más de 15 años conectando familias con sus hogares soñados en Rosario y alrededores
-            </p>
+<section className="relative bg-gradient-to-r from-gray-700 to-gray-500 text-white min-h-screen flex items-center overflow-hidden">
+{/* Video de fondo */}
+<video
+autoPlay
+loop
+muted
+className="absolute z-0 w-auto min-w-full min-h-full max-w-none"
+>
+<source src="video Monu.webm" type="video/mp4" />
+Tu navegador no soporta el elemento de video.
+</video>
 
-            {/* Search Bar */}
-            <div className="bg-white rounded-lg p-6 shadow-xl max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Tipo de propiedad" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="casa">Casa</SelectItem>
-                    <SelectItem value="departamento">Departamento</SelectItem>
-                    <SelectItem value="terreno">Terreno</SelectItem>
-                    <SelectItem value="local">Local Comercial</SelectItem>
-                  </SelectContent>
-                </Select>
+{/* Capa oscura semitransparente para mejorar la legibilidad del texto sobre el video */}
 
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Operación" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="venta">Venta</SelectItem>
-                    <SelectItem value="alquiler">Alquiler</SelectItem>
-                  </SelectContent>
-                </Select>
+<div className="absolute inset-0 bg-black/20 z-10"></div>
 
-                <Select>
-                  <SelectTrigger>
-                    <SelectValue placeholder="Zona" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="centro">Centro</SelectItem>
-                    <SelectItem value="pichincha">Pichincha</SelectItem>
-                    <SelectItem value="fisherton">Fisherton</SelectItem>
-                    <SelectItem value="funes">Funes</SelectItem>
-                    <SelectItem value="roldan">Roldán</SelectItem>
-                  </SelectContent>
-                </Select>
+{/* Contenido principal */}
 
-                <Input placeholder="Precio máximo" className="text-gray-900" />
-              </div>
-              <Button className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-3">
-                <Search className="h-5 w-5 mr-2" />
-                Buscar Propiedades
-              </Button>
-            </div>
-          </div>
-        </div>
-      </section>
+<div className="container mx-auto px-4 relative z-20 py-20">
+<div className="max-w-4xl mx-auto text-center">
+<h1 className="text-4xl md:text-6xl font-bold mb-6">
+Encuentra tu hogar ideal en <span className="font-bold bg-gradient-to-r from-gray-400 to-gray-100 bg-clip-text text-transparent">Rosario</span>
+</h1>
+<p className="text-xl md:text-2xl mb-8 text-blue-100">
+Más de 15 años conectando familias con sus hogares soñados en Rosario y alrededores
+</p>
+
+  {/* Search Bar */}
+  <div className="bg-white rounded-lg p-6 shadow-xl max-w-4xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+      <Select>
+        <SelectTrigger className="text-black">
+          <SelectValue placeholder="Tipo de propiedad" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="casa">Casa</SelectItem>
+          <SelectItem value="departamento">Departamento</SelectItem>
+          <SelectItem value="terreno">Terreno</SelectItem>
+          <SelectItem value="local">Local Comercial</SelectItem>
+        </SelectContent>
+      </Select>
+
+      <Select>
+        <SelectTrigger className="text-black">
+          <SelectValue placeholder="¿Querés comprar o alquilar?" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="venta">Venta</SelectItem>
+          <SelectItem value="alquiler">Alquiler</SelectItem>
+        </SelectContent>
+      </Select>
+
+      <Select>
+        <SelectTrigger className="text-black">
+          <SelectValue placeholder="¿En qué zona de Rosario?" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectItem value="centro">Centro</SelectItem>
+          <SelectItem value="pichincha">Pichincha</SelectItem>
+          <SelectItem value="fisherton">Fisherton</SelectItem>
+          <SelectItem value="funes">Funes</SelectItem>
+          <SelectItem value="roldan">Roldán</SelectItem>
+        </SelectContent>
+      </Select>
+
+      <Input placeholder="Ej: $150.000 - Precio máximo" className="text-gray-900" />
+    </div>
+    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-3">
+      <Search className="h-5 w-5 mr-2" />
+      Buscar Propiedades
+    </Button>
+  </div>
+</div>
+</div>
+</section>
 
       {/* Stats Section */}
       <section className="py-16 bg-gray-50">
@@ -486,120 +502,7 @@ export default function InmobiliariaRosario() {
         </div>
       </section>
 
-      {/* About Us Section */}
-      <section id="nosotros" className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                Más de 15 años construyendo confianza
-              </h2>
-              <p className="text-lg text-gray-600 mb-6">
-                Somos una inmobiliaria familiar con profundo conocimiento del mercado rosarino. Nuestra misión es
-                conectar a las familias con sus hogares ideales, brindando un servicio personalizado y transparente.
-              </p>
-              <div className="space-y-4">
-                <div className="flex items-center">
-                  <Award className="h-6 w-6 text-blue-600 mr-3" />
-                  <span className="text-gray-700">Reconocidos por nuestra excelencia en el servicio</span>
-                </div>
-                <div className="flex items-center">
-                  <Users className="h-6 w-6 text-blue-600 mr-3" />
-                  <span className="text-gray-700">Equipo de profesionales especializados</span>
-                </div>
-                <div className="flex items-center">
-                  <MapPin className="h-6 w-6 text-blue-600 mr-3" />
-                  <span className="text-gray-700">Conocimiento profundo del mercado local</span>
-                </div>
-              </div>
-              <Button className="mt-8" size="lg">
-                Conoce Nuestro Equipo
-              </Button>
-            </div>
-            <div className="relative">
-              <Image
-                src="/placeholder.svg?height=500&width=600"
-                alt="Equipo Inmobiliaria Rosario"
-                width={600}
-                height={500}
-                className="rounded-lg shadow-lg"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Lo que dicen nuestros clientes</h2>
-            <p className="text-xl text-gray-600">
-              La satisfacción de nuestros clientes es nuestra mejor carta de presentación
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="p-6">
-              <div className="flex items-center mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <p className="text-gray-600 mb-4">
-                "Excelente atención y profesionalismo. Me ayudaron a encontrar la casa perfecta para mi familia en
-                tiempo récord. Muy recomendable."
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-gray-300 rounded-full mr-3"></div>
-                <div>
-                  <div className="font-semibold">María González</div>
-                  <div className="text-sm text-gray-600">Cliente - Compra</div>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="p-6">
-              <div className="flex items-center mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <p className="text-gray-600 mb-4">
-                "Vendí mi departamento en tiempo récord y al precio que esperaba. El equipo es muy profesional y siempre
-                estuvieron disponibles."
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-gray-300 rounded-full mr-3"></div>
-                <div>
-                  <div className="font-semibold">Carlos Rodríguez</div>
-                  <div className="text-sm text-gray-600">Cliente - Venta</div>
-                </div>
-              </div>
-            </Card>
-
-            <Card className="p-6">
-              <div className="flex items-center mb-4">
-                {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <p className="text-gray-600 mb-4">
-                "La mejor inmobiliaria de Rosario. Me asesoraron en toda la operación y me dieron la tranquilidad que
-                necesitaba para mi primera compra."
-              </p>
-              <div className="flex items-center">
-                <div className="w-12 h-12 bg-gray-300 rounded-full mr-3"></div>
-                <div>
-                  <div className="font-semibold">Ana Martínez</div>
-                  <div className="text-sm text-gray-600">Cliente - Compra</div>
-                </div>
-              </div>
-            </Card>
-          </div>
-        </div>
-      </section>
-
+    
       {/* Sell/Rent Your Property - MODIFIED SECTION */}
       <section className="py-16 bg-blue-600 text-white">
         <div className="container mx-auto px-4">
@@ -699,6 +602,7 @@ export default function InmobiliariaRosario() {
                   >
                     <Facebook className="h-4 w-4" />
                   </Button>
+                <a href="https://www.instagram.com/ls.negociosinmobiliarios/" target="_blank">  
                   <Button
                     size="sm"
                     variant="outline"
@@ -706,6 +610,7 @@ export default function InmobiliariaRosario() {
                   >
                     <Instagram className="h-4 w-4" />
                   </Button>
+                  </a>
                   <Button
                     size="sm"
                     variant="outline"
@@ -797,13 +702,16 @@ export default function InmobiliariaRosario() {
                 >
                   <Facebook className="h-4 w-4" />
                 </Button>
+              <a href="https://www.instagram.com/ls.negociosinmobiliarios/" target="_blank" >
                 <Button
                   size="sm"
                   variant="ghost"
                   className="text-gray-400 hover:text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-all"
                 >
-                  <Instagram className="h-4 w-4" />
+                    <Instagram className="h-4 w-4" />
                 </Button>
+              </a>
+
                 <Button
                   size="sm"
                   variant="ghost"
