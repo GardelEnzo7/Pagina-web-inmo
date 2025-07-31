@@ -144,6 +144,7 @@ export default function InmobiliariaRosario() {
   autoPlay
   loop
   muted
+  playsInline
   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 min-w-full min-h-full w-auto h-auto object-cover"
 >
   
