@@ -146,7 +146,7 @@ loop
 muted
 className="absolute z-0 w-auto min-w-full min-h-full max-w-none"
 >
-<source src="video Monu.webm" type="video/mp4" />
+<source src="video-hero.webm" type="video/mp4" />
 Tu navegador no soporta el elemento de video.
 </video>
 
@@ -205,7 +205,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
 
       <Input placeholder="Ej: $150.000 - Precio máximo" className="text-gray-900" />
     </div>
-    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-lg py-3">
+    <Button className="w-full bg-[#3B4D5B] hover:bg-[#4F6372] text-lg py-3">
       <Search className="h-5 w-5 mr-2" />
       Buscar Propiedades
     </Button>
@@ -219,19 +219,19 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <div>
-              <div className="text-3xl font-bold text-blue-600 mb-2">500+</div>
+              <div className="text-3xl font-bold text-[#4F6372] mb-2">500+</div>
               <div className="text-gray-600">Propiedades Vendidas</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-blue-600 mb-2">15+</div>
+              <div className="text-3xl font-bold text-[#4F6372] mb-2">15+</div>
               <div className="text-gray-600">Años de Experiencia</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-blue-600 mb-2">98%</div>
+              <div className="text-3xl font-bold text-[#4F6372] mb-2">98%</div>
               <div className="text-gray-600">Clientes Satisfechos</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-blue-600 mb-2">24/7</div>
+              <div className="text-3xl font-bold text-[#4F6372] mb-2">24/7</div>
               <div className="text-gray-600">Atención al Cliente</div>
             </div>
           </div>
@@ -290,7 +290,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
               <CardContent className="p-6">
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-xl font-semibold text-gray-900">Casa en Fisherton</h3>
-                  <div className="text-2xl font-bold text-blue-600">$180.000</div>
+                  <div className="text-2xl font-bold text-[#4F6372]-900">$180.000</div>
                 </div>
                 <div className="flex items-center text-gray-600 mb-3">
                   <MapPin className="h-4 w-4 mr-1" />
@@ -341,7 +341,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
               <CardContent className="p-6">
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-xl font-semibold text-gray-900">Depto en Centro</h3>
-                  <div className="text-2xl font-bold text-blue-600">$85.000</div>
+                  <div className="text-2xl font-bold text-[#4F6372]-600">$85.000</div>
                 </div>
                 <div className="flex items-center text-gray-600 mb-3">
                   <MapPin className="h-4 w-4 mr-1" />
@@ -392,7 +392,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
               <CardContent className="p-6">
                 <div className="flex justify-between items-start mb-3">
                   <h3 className="text-xl font-semibold text-gray-900">Casa en Funes</h3>
-                  <div className="text-2xl font-bold text-blue-600">$320.000</div>
+                  <div className="text-2xl font-bold text-[#4F6372]-600">$320.000</div>
                 </div>
                 <div className="flex items-center text-gray-600 mb-3">
                   <MapPin className="h-4 w-4 mr-1" />
@@ -441,7 +441,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Building className="h-8 w-8 text-blue-600" />
+                <Building className="h-8 w-8 text-[#4F6372]-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Compra y Venta</h3>
               <p className="text-gray-600">
@@ -451,7 +451,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
 
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Key className="h-8 w-8 text-blue-600" />
+                <Key className="h-8 w-8 text-[#4F6372]-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Alquileres</h3>
               <p className="text-gray-600">
@@ -461,7 +461,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
 
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Calculator className="h-8 w-8 text-blue-600" />
+                <Calculator className="h-8 w-8 text-[#4F6372]-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Tasaciones</h3>
               <p className="text-gray-600">
@@ -471,7 +471,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
 
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <FileText className="h-8 w-8 text-blue-600" />
+                <FileText className="h-8 w-8 text-[#4F6372]-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Asesoramiento Legal</h3>
               <p className="text-gray-600">
@@ -481,7 +481,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
 
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <TrendingUp className="h-8 w-8 text-blue-600" />
+                <TrendingUp className="h-8 w-8 text-[#4F6372]-600" />
               </div>
               <h3 className="text-xl font-semibold mb-3">Inversiones</h3>
               <p className="text-gray-600">
@@ -491,7 +491,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
 
             <Card className="text-center p-6 hover:shadow-lg transition-shadow">
               <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Users className="h-8 w-8 text-blue-600" />
+                <Users className="h-8 w-8 text-[#4F6372]-600 " />
               </div>
               <h3 className="text-xl font-semibold mb-3">Administración</h3>
               <p className="text-gray-600">
@@ -504,42 +504,49 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
 
     
       {/* Sell/Rent Your Property - MODIFIED SECTION */}
-      <section className="py-16 bg-blue-600 text-white">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">¿Querés vender o alquilar tu propiedad?</h2>
-            <p className="text-xl mb-8 text-blue-100">
-              Te ayudamos a obtener el mejor precio y encontrar los inquilinos ideales para tu propiedad
-            </p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-              <div className="text-center">
-                <div className="bg-blue-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Calculator className="h-8 w-8" />
+        <section className="py-16 bg-[#3B4D5B] text-white">
+          <div className="container mx-auto px-4">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-bold mb-6">
+                ¿Querés vender o alquilar tu propiedad?
+              </h2>
+              <p className="text-xl mb-8 text-slate-200">
+                Te ayudamos a obtener el mejor precio y encontrar los inquilinos
+                ideales para tu propiedad
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div className="text-center">
+                  <div className="bg-[#4F6372] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Calculator className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">Valuación Profesional</h3>
+                  <p className="text-slate-200">Análisis de mercado detallado</p>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">Valuación Profesional</h3>
-                <p className="text-blue-100">Análisis de mercado detallado</p>
-              </div>
-              <div className="text-center">
-                <div className="bg-blue-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="h-8 w-8" />
+                <div className="text-center">
+                  <div className="bg-[#4F6372] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <TrendingUp className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">Marketing Efectivo</h3>
+                  <p className="text-slate-200">Promoción en todos los canales</p>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">Marketing Efectivo</h3>
-                <p className="text-blue-100">Promoción en todos los canales</p>
-              </div>
-              <div className="text-center">
-                <div className="bg-blue-500 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Users className="h-8 w-8" />
+                <div className="text-center">
+                  <div className="bg-[#4F6372] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Users className="h-8 w-8" />
+                  </div>
+                  <h3 className="text-lg font-semibold mb-2">Acompañamiento Total</h3>
+                  <p className="text-slate-200">Te guiamos en todo el proceso</p>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">Acompañamiento Total</h3>
-                <p className="text-blue-100">Te guiamos en todo el proceso</p>
               </div>
+              <Button
+                size="lg"
+                variant="secondary"
+                className="text-[#3B4D5B] font-bold"
+              >
+                Contactar Ahora
+              </Button>
             </div>
-            <Button size="lg" variant="secondary" className="text-blue-600">
-              Contactar Ahora
-            </Button>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Contact Section */}
       <section id="contacto" className="py-16 bg-gray-50">
@@ -554,28 +561,28 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
               <h3 className="text-2xl font-semibold mb-6">Información de Contacto</h3>
               <div className="space-y-6">
                 <div className="flex items-start">
-                  <MapPin className="h-6 w-6 text-blue-600 mr-4 mt-1" />
+                  <MapPin className="h-6 w-6 text-[#4F6372]-600 mr-4 mt-1" />
                   <div>
                     <h4 className="font-semibold">Dirección</h4>
                     <p className="text-gray-600">Av. Pellegrini 1234, Rosario, Santa Fe</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <Phone className="h-6 w-6 text-blue-600 mr-4 mt-1" />
+                  <Phone className="h-6 w-6 text-[#4F6372]-600 mr-4 mt-1" />
                   <div>
                     <h4 className="font-semibold">Teléfono</h4>
                     <p className="text-gray-600">+54 341 123-4567</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <Mail className="h-6 w-6 text-blue-600 mr-4 mt-1" />
+                  <Mail className="h-6 w-6 text-[#4F6372]-600 mr-4 mt-1" />
                   <div>
                     <h4 className="font-semibold">Email</h4>
                     <p className="text-gray-600">info@inmobiliariarosario.com</p>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <MessageCircle className="h-6 w-6 text-blue-600 mr-4 mt-1" />
+                  <MessageCircle className="h-6 w-6 text-[#4F6372]-600 mr-4 mt-1" />
                   <div>
                     <h4 className="font-semibold">WhatsApp</h4>
                     <p className="text-gray-600">+54 9 341 123-4567</p>
@@ -674,7 +681,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-12">
+      <footer className="bg-[#3B4D5B] text-white py-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
@@ -691,14 +698,14 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
                   <p className="text-sm text-gray-400">Negocios Inmobiliarios</p>
                 </div>
               </div>
-              <p className="text-gray-400 mb-4">
+              <p className="text-white mb-4">
                 Más de 15 años conectando familias con sus hogares soñados en Rosario y alrededores.
               </p>
               <div className="flex space-x-4">
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="text-gray-400 hover:text-white hover:bg-blue-600 transition-colors"
+                  className="text-gray-200 hover:text-white hover:bg-blue-600 transition-colors"
                 >
                   <Facebook className="h-4 w-4" />
                 </Button>
@@ -706,7 +713,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="text-gray-400 hover:text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-all"
+                  className="text-gray-200 hover:text-white hover:bg-gradient-to-r hover:from-purple-500 hover:to-pink-500 transition-all"
                 >
                     <Instagram className="h-4 w-4" />
                 </Button>
@@ -715,7 +722,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
                 <Button
                   size="sm"
                   variant="ghost"
-                  className="text-gray-400 hover:text-white hover:bg-blue-700 transition-colors"
+                  className="text-gray-200 hover:text-white hover:bg-blue-700 transition-colors"
                 >
                   <Linkedin className="h-4 w-4" />
                 </Button>
@@ -724,7 +731,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
 
             <div>
               <h4 className="text-lg font-semibold mb-4">Servicios</h4>
-              <ul className="space-y-2 text-gray-400">
+              <ul className="space-y-2 text-gray-300">
                 <li>
                   <Link href="#" className="hover:text-white transition-colors">
                     Compra y Venta
@@ -755,7 +762,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
 
             <div>
               <h4 className="text-lg font-semibold mb-4">Zonas</h4>
-              <ul className="space-y-2 text-gray-400">
+              <ul className="space-y-2 text-gray-300">
                 <li>
                   <Link href="#" className="hover:text-white transition-colors">
                     Centro
@@ -786,7 +793,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
 
             <div>
               <h4 className="text-lg font-semibold mb-4">Contacto</h4>
-              <div className="space-y-2 text-gray-400">
+              <div className="space-y-2 text-white">
                 <p>Av. Pellegrini 1234</p>
                 <p>Rosario, Santa Fe</p>
                 <p>+54 341 123-4567</p>
@@ -795,7 +802,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
             </div>
           </div>
 
-          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-white">
             <p>&copy; 2024 Laura Senmache Negocios Inmobiliarios. Todos los derechos reservados.</p>
           </div>
         </div>
@@ -804,7 +811,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
       {/* WhatsApp Float Button */}
       <div className="fixed bottom-6 right-6 z-50">
         <Button size="lg" className="bg-green-500 hover:bg-green-600 rounded-full p-4 shadow-lg transition-colors">
-          <WhatsApp className="h-6 w-6" />
+          <WhatsApp className="h-2 w-6" />
         </Button>
       </div>
     </div>
