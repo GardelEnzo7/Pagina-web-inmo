@@ -146,7 +146,7 @@ loop
 muted
 className="absolute z-0 w-auto min-w-full min-h-full max-w-none"
 >
-<source src="video-hero.webm" type="video/mp4" />
+<source src="video-hero.webm" type="video/webm" />
 Tu navegador no soporta el elemento de video.
 </video>
 
