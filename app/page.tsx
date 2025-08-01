@@ -80,9 +80,9 @@ export default function InmobiliariaRosario() {
       <Head>
         {isClient && (
           isDesktop ? (
-            <link rel="preload" as="image" href="/images/video-poster.jpg" />
+            <link rel="preload" as="image" href="/videos/video-desktop.webm" />
           ) : (
-            <link rel="preload" as="image" href="/images/poster-mobile.webp" />
+            <link rel="preload" as="image" href="/poster-mobile.webp" />
           )
         )}
       </Head>
@@ -181,19 +181,21 @@ export default function InmobiliariaRosario() {
 
       {/* Hero Section */}
 <section id="inicio" className="relative bg-gradient-to-r from-gray-700 to-gray-500 text-white min-h-screen flex items-center overflow-hidden">
-{/* Video de fondo */}
+{/* --- Video para Desktop (optimizado) --- */}
+{/* Se oculta en celulares y se muestra solo en pantallas grandes */}
 <video
   autoPlay
   loop
   muted
-  className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 min-w-full min-h-full w-auto h-auto object-cover"
+  playsInline
+  className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 min-w-full min-h-full w-auto h-auto object-cover"
 >
-  
-  <source src="videos/video-desktop.webm" type="video/mp4" />
+  <source src="/videos/video-desktop.webm" type="video/webm" />
   Tu navegador no soporta el elemento de video.
 </video>
 
-  {/* --- Video para Mobile (el optimizado) --- */}
+
+  {/* --- Video para Mobile --- */}
   {/* Se muestra solo en celulares y se oculta en pantallas más grandes */}
   <video
     autoPlay
@@ -201,15 +203,16 @@ export default function InmobiliariaRosario() {
     muted
     playsInline
     className="block md:hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full object-cover"
+    
   >
-    <source src="videos/video-mobile.webm" type="video/mp4" />
+    <source src="/videos/video-mobile.webm" type="video/webm" />
     Tu navegador no soporta el elemento de video.
   </video>
 
 
 {/* Capa oscura semitransparente para mejorar la legibilidad del texto sobre el video */}
 
-<div className="absolute inset-0 bg-black/20 z-10"></div>
+<div className="absolute inset-0 bg-black/10 z-10"></div>
 
 {/* Contenido principal */}
 
