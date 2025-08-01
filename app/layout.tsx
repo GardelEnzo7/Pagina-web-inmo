@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" className='scroll-smooth'>
       <head>
-        <link rel="preload" as='image' href="/poster-mobile.webp" />
+        
       </head>
         <body>{children}</body>
     </html>
