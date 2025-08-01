@@ -30,13 +30,36 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import Head from 'next/head'
 import { useState, useEffect } from "react"
+
+// Hook para detectar el tamaño de la pantalla (lo integramos aquí para simplicidad)
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(false);
+
+  useEffect(() => {
+    // Este código solo se ejecuta en el navegador
+    const media = window.matchMedia(query);
+    if (media.matches !== matches) {
+      setMatches(media.matches);
+    }
+    const listener = () => setMatches(media.matches);
+    window.addEventListener('resize', listener);
+    return () => window.removeEventListener('resize', listener);
+  }, [matches, query]);
+
+  return matches;
+}
+
 
 export default function InmobiliariaRosario() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [showFullNav, setShowFullNav] = useState(false)
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+  const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
+    setIsClient(true);
     const handleScroll = () => {
       const scrollTop = window.scrollY
       const newIsScrolled = scrollTop > 100
@@ -54,6 +77,15 @@ export default function InmobiliariaRosario() {
 
   return (
     <div className="min-h-screen bg-white">
+      <Head>
+        {isClient && (
+          isDesktop ? (
+            <link rel="preload" as="image" href="/images/video-poster.jpg" />
+          ) : (
+            <link rel="preload" as="image" href="/images/poster-mobile.webp" />
+          )
+        )}
+      </Head>
       {/* Header */}
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out ${
@@ -79,7 +111,7 @@ export default function InmobiliariaRosario() {
                   <a href="#inicio">
                     <div className="flex items-center space-x-3">
                       <Image
-                        src="/logo-3.png"
+                        src="/logo-3.webp"
                         alt="Laura Senmache Negocios Inmobiliarios"
                         width={48}
                         height={48}
@@ -136,7 +168,7 @@ export default function InmobiliariaRosario() {
           >
             <div className="bg-white/90 backdrop-blur-md rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-110 cursor-pointer hover:bg-white/95">
               <Image
-                src="/logo-3.png"
+                src="/logo-3.webp"
                 alt="Laura Senmache"
                 width={40}
                 height={40}
@@ -170,7 +202,7 @@ export default function InmobiliariaRosario() {
     playsInline
     className="block md:hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 min-w-full min-h-full object-cover"
   >
-    <source src="videos/video-mobile.webm" type="video/webm" />
+    <source src="videos/video-mobile.webm" type="video/mp4" />
     Tu navegador no soporta el elemento de video.
   </video>
 
@@ -712,7 +744,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
             <div>
               <div className="flex items-center space-x-3 mb-4">
                 <Image
-                  src="/logo-3.png"
+                  src="/logo-3.webp"
                   alt="Laura Senmache Negocios Inmobiliarios"
                   width={48}
                   height={48}
