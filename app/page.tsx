@@ -76,19 +76,21 @@ export default function InmobiliariaRosario() {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-4">
-                  <div className="flex items-center space-x-3">
-                    <Image
-                      src="/logo-3.png"
-                      alt="Laura Senmache Negocios Inmobiliarios"
-                      width={48}
-                      height={48}
-                      className="h-12 w-12 object-contain"
-                    />
-                    <div className="hidden sm:block">
-                      <h3 className="text-xl font-bold text-gray-900">Laura Senmache</h3>
-                      <p className="text-sm text-gray-600">Negocios Inmobiliarios</p>
+                  <a href="#inicio">
+                    <div className="flex items-center space-x-3">
+                      <Image
+                        src="/logo-3.png"
+                        alt="Laura Senmache Negocios Inmobiliarios"
+                        width={48}
+                        height={48}
+                        className="h-12 w-12 object-contain"
+                      />
+                      <div className="hidden sm:block">
+                        <h3 className="text-xl font-bold text-gray-900">Laura Senmache</h3>
+                        <p className="text-sm text-gray-600">Negocios Inmobiliarios</p>
+                      </div>
                     </div>
-                  </div>
+                  </a>
                 </div>
               </div>
 
@@ -107,12 +109,20 @@ export default function InmobiliariaRosario() {
                 </Link>
               </nav>
 
-              <div className="flex items-center space-x-2">
-                <Button size="sm" className="bg-green-600 hover:bg-green-700">
-                  <WhatsApp className="h-4 w-4 mr-2" />
-                  WhatsApp
-                </Button>
-              </div>
+              <a
+                href="https://wa.me/5493411234567"
+                target="blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center bg-white text-green-500 font-semibold py-1 px-4 rounded-full border border-green-500 transition-colors hover:bg-green-500 hover:text-white">
+                  <Image
+                    src="/icons/icon-wsp.svg"
+                    alt="Contacto de Whatsapp"
+                    className="mr-1"
+                    width={40}
+                    height={40}
+                    />
+                    Whatsapp
+              </a>
             </div>
           </div>
 
@@ -138,7 +148,7 @@ export default function InmobiliariaRosario() {
       </header>
 
       {/* Hero Section */}
-<section className="relative bg-gradient-to-r from-gray-700 to-gray-500 text-white min-h-screen flex items-center overflow-hidden">
+<section id="inicio" className="relative bg-gradient-to-r from-gray-700 to-gray-500 text-white min-h-screen flex items-center overflow-hidden">
 {/* Video de fondo */}
 <video
   autoPlay
@@ -286,7 +296,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
             <Card className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative">
                 <Image
-                  src="/placeholder.svg?height=250&width=400"
+                  src="/propiedades/casa-fisherton.webp"
                   alt="Casa en Fisherton"
                   width={400}
                   height={250}
@@ -337,7 +347,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
             <Card className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative">
                 <Image
-                  src="/placeholder.svg?height=250&width=400"
+                  src="/propiedades/depto-rosario.webp"
                   alt="Departamento en Centro"
                   width={400}
                   height={250}
@@ -388,7 +398,7 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
             <Card className="overflow-hidden hover:shadow-lg transition-shadow">
               <div className="relative">
                 <Image
-                  src="/placeholder.svg?height=250&width=400"
+                  src="/propiedades/casa-funes.webp"
                   alt="Casa en Funes"
                   width={400}
                   height={250}
@@ -809,9 +819,18 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
             <div>
               <h4 className="text-lg font-semibold mb-4">Contacto</h4>
               <div className="space-y-2 text-white">
-                <p>Av. Pellegrini 1234</p>
+                <a target="blank" href="https://www.google.com/maps/place/Av.+Pellegrini+1234,+S2000BTZ+Rosario,+Santa+Fe/@-32.9566704,-60.6454558,17z/data=!3m1!4b1!4m5!3m4!1s0x95b7ab0fab4466a5:0xa701c7ec0f6298cf!8m2!3d-32.9566704!4d-60.6428755?entry=ttu&g_ep=EgoyMDI1MDcyOS4wIKXMDSoASAFQAw%3D%3D">
+                  Av. Pellegrini 1234
+                </a>
                 <p>Rosario, Santa Fe</p>
-                <p>+54 341 123-4567</p>
+                <a
+                  href="https://wa.me/5493411234567"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  +54 341 123-4567
+                </a>
                 <p>info@inmobiliariarosario.com</p>
               </div>
             </div>
@@ -823,12 +842,22 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
         </div>
       </footer>
 
-      {/* WhatsApp Float Button */}
-      <div className="fixed bottom-6 right-6 z-50">
-        <Button size="lg" className="bg-green-500 hover:bg-green-600 rounded-full p-4 shadow-lg transition-colors">
-          <WhatsApp className="h-2 w-6" />
-        </Button>
-      </div>
+      {/* --- WhatsApp Float Button --- */}
+        <div className="fixed bottom-6 right-6 z-50">
+          <a
+            href="https://wa.me/5493411234567"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-green-500 hover:bg-green-600 rounded-full shadow-lg transition-colors flex items-center justify-center w-16 h-16"
+          >
+            <Image
+              src="/icons/icon-wsp.svg"
+              alt="Contacto de WhatsApp"
+              width={48}
+              height={48}
+            />
+          </a>
+        </div>
     </div>
   )
 }
