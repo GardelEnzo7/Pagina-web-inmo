@@ -878,7 +878,9 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
       </footer>
 
       {/* --- WhatsApp Float Button --- */}
-        <div className="fixed bottom-6 right-6 z-50">
+        <div className={`fixed bottom-6 right-6 z-40 transition-all duration-300 ease-out
+                        ${isScrolled ? "opacity-100 scale-100" : "opacity-0 scale-75 pointer-events-none"}
+                        `}>
           <a
             href="https://wa.me/5493411234567"
             target="_blank"
