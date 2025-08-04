@@ -32,6 +32,7 @@ import Link from "next/link"
 import Head from 'next/head'
 import { useState, useEffect, useRef } from "react"
 import { todasLasPropiedades } from '../data/propiedades';
+import { Menu, X } from "lucide-react";
 
 
 // Hook para detectar el tamaño de la pantalla (lo integramos aquí para simplicidad)
@@ -203,6 +204,7 @@ export default function InmobiliariaRosario() {
   const [showFullNav, setShowFullNav] = useState(false)
   const isDesktop = useMediaQuery('(min-width: 768px)');
   const [isClient, setIsClient] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
@@ -232,98 +234,178 @@ export default function InmobiliariaRosario() {
           )
         )}
       </Head>
-      {/* Header */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out ${
-          isScrolled && !showFullNav
-            ? "bg-transparent backdrop-blur-none border-transparent"
-            : "bg-white/70 backdrop-blur-md shadow-sm border-b border-gray-200 hover:bg-white/95 hover:shadow-lg"
-        }`}
-        onMouseEnter={() => setShowFullNav(true)}
-        onMouseLeave={() => setShowFullNav(false)}
-      >
-        <div className="container mx-auto px-4 py-4 relative">
-          {/* Navbar completa */}
-          <div
-            className={`transition-all duration-700 ease-out transform ${
-              isScrolled && !showFullNav
-                ? "opacity-0 pointer-events-none scale-95 -translate-y-2"
-                : "opacity-100 scale-100 translate-y-0"
-            }`}
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <div className="flex items-center space-x-4">
-                  <a href="#inicio">
-                    <div className="flex items-center space-x-3">
-                      <Image
-                        src="/logo-3.webp"
-                        alt="Laura Senmache Negocios Inmobiliarios"
-                        width={48}
-                        height={48}
-                        className="h-12 w-12 object-contain"
-                      />
-                      <div className="hidden sm:block">
-                        <h3 className="text-xl font-bold text-gray-900">Laura Senmache</h3>
-                        <p className="text-sm text-gray-600">Negocios Inmobiliarios</p>
-                      </div>
-                    </div>
-                  </a>
-                </div>
-              </div>
 
-              <nav className="hidden md:flex items-center space-x-6 ">
-                <Link href="#inicio" className="text-gray-700 hover:text-blue-600 transition-colors font-bold">
-                  Inicio
-                </Link>
-                <Link href="#propiedades" className="text-gray-700 hover:text-blue-600 transition-colors font-bold">
-                  Propiedades
-                </Link>
-                <Link href="#servicios" className="text-gray-700 hover:text-blue-600 transition-colors font-bold">
-                  Servicios
-                </Link>
-                <Link href="#contacto" className="text-gray-700 hover:text-blue-600 transition-colors font-bold ">
-                  Contacto
-                </Link>
-              </nav>
-
-              <a
-                href="https://wa.me/5493411234567"
-                target="blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center bg-white text-green-500 font-semibold py-1 px-4 rounded-full border border-green-500 transition-colors hover:bg-green-500 hover:text-white">
-                  <Image
-                    src="/icons/icon-wsp.svg"
-                    alt="Contacto de Whatsapp"
-                    className="mr-1"
-                    width={40}
-                    height={40}
-                    />
-                    Whatsapp
-              </a>
-            </div>
-          </div>
-
-          {/* Solo el logo cuando está scrolled - usando el logo-3 más pequeño */}
-          <div
-            className={`absolute top-[10px] left-1/2 transform -translate-x-1/2 -translate-y-1/2 transition-all duration-700 ease-out ${
-              isScrolled && !showFullNav
-                ? "opacity-100 scale-100 translate-y-0"
-                : "opacity-0 pointer-events-none scale-75 translate-y-2"
-            }`}
-          >
-            <div className="bg-white/90 backdrop-blur-md rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-110 cursor-pointer hover:bg-white/95">
-              <Image
-                src="/logo-3.webp"
-                alt="Laura Senmache"
-                width={40}
-                height={40}
-                className="h-10 w-10 object-contain"
-              />
-            </div>
+    {/* Header */}
+<header
+  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
+    // MODIFICACIÓN 1: La barra solo se vuelve transparente en ESCRITORIO
+    isDesktop && isScrolled && !showFullNav && !isMobileMenuOpen
+      ? "bg-transparent backdrop-blur-none"
+      : "bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200"
+  }`}
+  onMouseEnter={() => !isMobileMenuOpen && setShowFullNav(true)}
+  onMouseLeave={() => !isMobileMenuOpen && setShowFullNav(false)}
+  >
+  <div className="container mx-auto px-4 py-4 relative">
+    
+    {/* --- NAVBAR DESKTOP (Estructura Corregida) --- */}
+    <div
+      className={`hidden md:flex items-center justify-between transition-all duration-300 ease-out transform ${
+        // Esta lógica de ocultar/mostrar está bien porque ya es solo para desktop
+        isScrolled && !showFullNav
+          ? "opacity-0 pointer-events-none scale-95 -translate-y-2"
+          : "opacity-100 scale-100 translate-y-0"
+      }`}
+    >
+      {/* 1. Logo */}
+      <a href="#inicio">
+        <div className="flex items-center space-x-3">
+          <Image
+            src="/logo-3.webp"
+            alt="Laura Senmache Negocios Inmobiliarios"
+            width={48}
+            height={48}
+            className="h-12 w-12 object-contain"
+          />
+          <div className="hidden sm:block">
+            <h3 className="text-xl font-bold text-gray-900">Laura Senmache</h3>
+            <p className="text-sm text-gray-600">Negocios Inmobiliarios</p>
           </div>
         </div>
-      </header>
+      </a>
+
+      {/* 2. Navegación */}
+      <nav className="flex items-center space-x-6">
+        <Link href="#inicio" className="text-[#3B4D5B] hover:text-[#3B4D5B] transition-colors font-bold">
+          Inicio
+        </Link>
+        <Link href="#propiedades" className="text-[#3B4D5B] hover:text-[#546d81] transition-colors font-bold">
+          Propiedades
+        </Link>
+        <Link href="#servicios" className="text-[#3B4D5B] hover:text-[#546d81] transition-colors font-bold">
+          Servicios
+        </Link>
+        <Link href="#contacto" className="text-[#3B4D5B] hover:text-[#546d81] transition-colors font-bold">
+          Contacto
+        </Link>
+      </nav>
+
+      {/* 3. Botón de WhatsApp */}
+      <a
+        href="https://wa.me/5493411234567"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center bg-white text-green-500 font-semibold py-1 px-4 rounded-full border border-green-500 transition-colors hover:bg-green-500 hover:text-white"
+      >
+        <Image
+          src="/icons/icon-wsp.svg"
+          alt="Contacto de Whatsapp"
+          className="mr-1"
+          width={40}
+          height={40}
+        />
+        Whatsapp
+      </a>
+    </div>
+
+    {/* --- NAVBAR MOBILE --- */}
+    <div className="flex md:hidden items-center justify-between">
+      {/* Izquierda: Botón de Menú */}
+      <div className="flex-1">
+        <Button
+          size="icon"
+          variant="ghost"
+          onClick={() => setIsMobileMenuOpen(true)}
+        >
+          <Menu 
+          className="h-7 w-7" />
+        </Button>
+      </div>
+
+      {/* Centro: Logo */}
+      <div className="flex-none">
+        <a href="#inicio" onClick={() => setIsMobileMenuOpen(false)}>
+          <Image
+            src="/logo-3.webp"
+            alt="Laura Senmache"
+            width={40}
+            height={40}
+            className="h-10 w-10 object-contain"
+          />
+        </a>
+      </div>
+
+      {/* Derecha: Botón de WhatsApp */}
+      <div className="flex-1 flex justify-end">
+        <a href="https://wa.me/5493411234567" target="_blank" rel="noopener noreferrer">
+          {/* Se usa el ícono de teléfono por consistencia, podés cambiarlo por tu SVG si querés */}
+          <Image
+            src="/icons/icon-wsp.svg"
+            alt="Contacto de Whatsapp"
+            className="mr-1"
+            width={40}
+            height={40}
+        />
+        </a>
+      </div>
+    </div>
+  </div>
+             {/* --- Logo Flotante (Burbuja) --- */}
+  <div
+    // MODIFICACIÓN 2: La burbuja solo existe en ESCRITORIO
+    className={`hidden md:block absolute top-4 left-1/2 -translate-x-1/2 transition-all duration-300 ease-out ${
+      isScrolled && !showFullNav
+        ? "opacity-100 scale-100"
+        : "opacity-0 pointer-events-none scale-75"
+    }`}
+  >
+    <a href="#inicio" className="bg-white/90 backdrop-blur-md rounded-full p-2 shadow-lg hover:shadow-xl transition-all duration-300 ease-out hover:scale-110 cursor-pointer block">
+      <Image
+        src="/logo-3.webp"
+        alt="Laura Senmache"
+        width={40}
+        height={40}
+        className="h-10 w-10 object-contain"
+      />
+    </a>
+  </div>
+</header>
+
+{/* --- MENÚ DESPLEGABLE MÓVIL (LA PARTE QUE FALTABA) --- */}
+<div
+  className={`fixed top-0 left-0 h-full w-full  bg-gray-50 backdrop-blur-md z-[60] transform transition-transform duration-300 ease-in-out md:hidden ${
+    isMobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+  }`}
+>
+  <div className="flex justify-between items-center p-4 border-b border-gray-200">
+    <a href="#inicio" onClick={() => setIsMobileMenuOpen(false)}>
+      <h3 className="text-xl font-bold text-black">Menú</h3>
+    </a>
+    <Button
+      size="icon"
+      variant="ghost"
+      onClick={() => setIsMobileMenuOpen(false)}
+    >
+      <X className="h-6 w-6" />
+    </Button>
+  </div>
+  
+  <nav className="flex flex-col items-center justify-center space-y-8 mt-16">
+    <Link href="#inicio" className="text-2xl text-[#455c6d] font-bold hover:text-[#3B4D5B]" onClick={() => setIsMobileMenuOpen(false)}>
+      Inicio
+    </Link>
+    <Link href="#propiedades" className="text-2xl text-[#455c6d] font-bold hover:text-[#3B4D5B]" onClick={() => setIsMobileMenuOpen(false)}>
+      Propiedades
+    </Link>
+    <Link href="#servicios" className="text-2xl text-[#455c6d] font-bold hover:text-[#3B4D5B]" onClick={() => setIsMobileMenuOpen(false)}>
+      Servicios
+    </Link>
+    <Link href="#contacto" className="text-2xl text-[#455c6d] font-bold hover:text-[#3B4D5B]" onClick={() => setIsMobileMenuOpen(false)}>
+      Contacto
+    </Link>
+  </nav>
+</div>
+      
 
       {/* Hero Section */}
 <section id="inicio" className="relative bg-gradient-to-r from-gray-700 to-gray-500 text-white min-h-screen flex items-center overflow-hidden">
