@@ -6,6 +6,11 @@ import { Badge } from "@/components/ui/badge"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import {
+  Building2,
+  UtensilsCrossed,
+  Home,
+  Sun,
+  Waves,
   Search,
   MapPin,
   Phone,
@@ -25,7 +30,9 @@ import {
   Square,
   Heart,
   Share2,
-  Filter,
+  Landmark,
+  Navigation,
+  
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -223,6 +230,35 @@ export default function InmobiliariaRosario() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [isScrolled])
 
+ // --- FUNCIÓN PARA CONTROLAR LAS CLASES DEL HEADER ---
+  const getHeaderClasses = () => {
+    const baseClasses = "fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out";
+
+    if (!isClient) {
+      // Clases por defecto en el servidor para evitar "parpadeo"
+      return `${baseClasses} bg-white/80 backdrop-blur-md shadow-sm`;
+    }
+
+    if (isDesktop) {
+      // LÓGICA PARA ESCRITORIO
+      if (isScrolled && !showFullNav) {
+        return `${baseClasses} bg-transparent backdrop-blur-none`;
+      }
+      return `${baseClasses} bg-white/80 backdrop-blur-md shadow-sm`;
+    } else {
+      // LÓGICA PARA CELULAR
+      if (isMobileMenuOpen) {
+        return `${baseClasses} bg-white shadow-md`;
+      }
+      if (isScrolled) {
+        return `${baseClasses} bg-white/60 backdrop-blur-sm shadow-sm`;
+      }
+      return `${baseClasses} bg-white/80 backdrop-blur-md shadow-sm`;
+    }
+  };
+
+
+
   return (
     <div className="min-h-screen bg-white">
       <Head>
@@ -236,13 +272,7 @@ export default function InmobiliariaRosario() {
       </Head>
 
     {/* Header */}
-<header
-  className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-out ${
-    // MODIFICACIÓN 1: La barra solo se vuelve transparente en ESCRITORIO
-    isDesktop && isScrolled && !showFullNav && !isMobileMenuOpen
-      ? "bg-transparent backdrop-blur-none"
-      : "bg-white/80 backdrop-blur-md shadow-sm border-b border-gray-200"
-  }`}
+<header className={getHeaderClasses()}
   onMouseEnter={() => !isMobileMenuOpen && setShowFullNav(true)}
   onMouseLeave={() => !isMobileMenuOpen && setShowFullNav(false)}
   >
@@ -275,18 +305,24 @@ export default function InmobiliariaRosario() {
       </a>
 
       {/* 2. Navegación */}
-      <nav className="flex items-center space-x-6">
-        <Link href="#inicio" className="text-[#3B4D5B] hover:text-[#3B4D5B] transition-colors font-bold">
-          Inicio
+      <nav className="hidden md:flex items-center space-x-8">
+        <Link href="#inicio" className="relative group text-gray-700 hover:text-gray-900 transition-colors duration-300 font-bold py-2">
+          <span>Inicio</span>
+          <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#3B4D5B] transition-all duration-300 group-hover:w-full"></span>
         </Link>
-        <Link href="#propiedades" className="text-[#3B4D5B] hover:text-[#546d81] transition-colors font-bold">
-          Propiedades
+        <Link href="#propiedades" className="relative group text-gray-700 hover:text-gray-900 transition-colors duration-300 font-bold py-2">
+          <span>Propiedades</span>
+          <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#3B4D5B] transition-all duration-300 group-hover:w-full"></span>
         </Link>
-        <Link href="#servicios" className="text-[#3B4D5B] hover:text-[#546d81] transition-colors font-bold">
-          Servicios
+
+        <Link href="#servicios" className="relative group text-gray-700 hover:text-gray-900 transition-colors duration-300 font-bold py-2">
+          <span>Servicios</span>
+          <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#3B4D5B] transition-all duration-300 group-hover:w-full"></span>
         </Link>
-        <Link href="#contacto" className="text-[#3B4D5B] hover:text-[#546d81] transition-colors font-bold">
-          Contacto
+
+        <Link href="#contacto" className="relative group text-gray-700 hover:text-gray-900 transition-colors duration-300 font-bold py-2">
+          <span>Contacto</span>
+          <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-[#3B4D5B] transition-all duration-300 group-hover:w-full"></span>
         </Link>
       </nav>
 
@@ -785,25 +821,27 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
 
       {/* Footer */}
       <footer className="bg-[#3B4D5B] text-white py-12">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div>
-              <div className="flex items-center space-x-3 mb-4">
-                <Image
-                  src="/logo-3.webp"
-                  alt="Laura Senmache Negocios Inmobiliarios"
-                  width={48}
-                  height={48}
-                  className="h-12 w-12 object-contain"
-                />
-                <div>
-                  <h3 className="text-xl font-bold">Laura Senmache</h3>
-                  <p className="text-sm text-gray-400">Negocios Inmobiliarios</p>
+        <div className="container mx-auto px-4 items-stretch">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 ">
+            <div> 
+              <div className="bg-[#455c6d] rounded-md px-3 py-4 mb-3 mt-9">
+                <div className="flex items-center space-x-3 mb-4">
+                  <Image
+                    src="/logo-3.webp"
+                    alt="Laura Senmache Negocios Inmobiliarios"
+                    width={48}
+                    height={48}
+                    className="h-12 w-12 object-contain"
+                  />
+                  <div>
+                    <h3 className="text-xl font-bold">Laura Senmache</h3>
+                    <p className="text-sm text-gray-400">Negocios Inmobiliarios</p>
+                  </div>
                 </div>
-              </div>
               <p className="text-white mb-4">
                 Más de 15 años conectando familias con sus hogares soñados en Rosario y alrededores.
               </p>
+              </div>
               <div className="flex space-x-4">
                 <Button
                   size="sm"
@@ -834,75 +872,76 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-4">Servicios</h4>
-              <ul className="space-y-2 text-gray-300">
+              <h4 className="text-lg font-semibold mb-2 ">Servicios</h4>
+              <ul className="space-y-2 text-gray-300 bg-[#455c6d] p-4 rounded-md">
                 <li>
+                  
                   <Link href="#" className="hover:text-white transition-colors">
-                    Compra y Venta
+                    <Building className="h-5 w-5 text-[#4F6372]-600 inline-block mr-1" /> Compra y Venta
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="hover:text-white transition-colors">
-                    Alquileres
+                    <Key className="h-5 w-5 text-[#4F6372]-600 inline-block mr-2" />Alquileres
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="hover:text-white transition-colors">
-                    Tasaciones
+                    <Calculator className="h-5 w-5 text-[#4F6372]-600 inline-block mr-2" />Tasaciones
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="hover:text-white transition-colors">
-                    Asesoramiento Legal
+                    <FileText className="h-5 w-5 text-[#4F6372]-600 inline-block mr-2" />Asesoramiento Legal
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="hover:text-white transition-colors">
-                    Inversiones
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="text-lg font-semibold mb-4">Zonas</h4>
-              <ul className="space-y-2 text-gray-300">
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    Centro
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    Pichincha
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    Fisherton
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    Funes
-                  </Link>
-                </li>
-                <li>
-                  <Link href="#" className="hover:text-white transition-colors">
-                    Roldán
+                    <TrendingUp className="h-5 w-5 inline-block mr-2" />Inversiones
                   </Link>
                 </li>
               </ul>
             </div>
 
             <div>
-              <h4 className="text-lg font-semibold mb-4">Contacto</h4>
-              <div className="space-y-2 text-gray-300">
+              <h4 className="text-lg font-semibold mb-2">Zonas</h4>
+              <ul className="space-y-2 text-gray-300 bg-[#455c6d] p-4 rounded-md">
+                <li>
+                  <Link href="#" className="hover:text-white transition-colors">
+                    <Building2 className="h-5 w-5 inline-block mr-2" />Centro
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-white transition-colors">
+                    <UtensilsCrossed className="h-5 w-5 inline-block mr-2" />Pichincha
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-white transition-colors">
+                    <Home className="h-5 w-5 inline-block mr-2" />Fisherton
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-white transition-colors">
+                    <Sun className="h-5 w-5 inline-block mr-2" />Funes
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="hover:text-white transition-colors">
+                    <Waves className="h-5 w-5 inline-block mr-2" />Roldán
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-semibold mb-2">Contacto</h4>
+              <div className="space-y-2 text-gray-300 bg-[#455c6d] p-4 rounded-md">
                 <a className="hover:text-white transition-colors" target="blank" href="https://www.google.com/maps/place/Av.+Pellegrini+1234,+S2000BTZ+Rosario,+Santa+Fe/@-32.9566704,-60.6454558,17z/data=!3m1!4b1!4m5!3m4!1s0x95b7ab0fab4466a5:0xa701c7ec0f6298cf!8m2!3d-32.9566704!4d-60.6428755?entry=ttu&g_ep=EgoyMDI1MDcyOS4wIKXMDSoASAFQAw%3D%3D">
-                  Av. Pellegrini 1234
+                  <MapPin className="h-5 w-5 inline-block mr-2" />Av. Pellegrini 1234
                 </a>
                 <a className="block hover:text-white transition-colors" target="blank" href="https://www.google.com/maps/place/Rosario,+Santa+Fe/@-32.9521821,-60.7792114,12z/data=!3m1!4b1!4m6!3m5!1s0x95b6539335d7d75b:0xec4086e90258a557!8m2!3d-32.9587022!4d-60.6930416!16zL20vMDJ0YjE3?entry=ttu&g_ep=EgoyMDI1MDczMC4wIKXMDSoASAFQAw%3D%3D">
-                  Rosario, Santa Fe
+                  <Navigation className="h-5 w-5 inline-block mr-2" />Rosario, Santa Fe
                   </a>
                 <a
                   href="https://wa.me/5493411234567"
@@ -910,10 +949,10 @@ Más de 15 años conectando familias con sus hogares soñados en Rosario y alred
                   rel="noopener noreferrer"
                   className="block hover:text-white transition-colors"
                 >
-                  +54 341 123-4567
+                  <Phone className="h-5 w-5 inline-block mr-2" />+54 341 123-4567
                 </a>
                 <a href="mailto:Inmobiliariasenmache@gmail.com?subject=Consulta%20desde%20el%20sitio%20web" className="block hover:text-white transition-colors">
-                  Inmobiliariasenmache@gmail.com
+                  <Mail className="h-5 w-5 inline-block mr-2" />Inmobiliariasenmache@gmail.com
                 </a>
               </div>
             </div>
