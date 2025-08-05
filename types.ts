@@ -3,7 +3,8 @@ export type Propiedad = {
     title: string;
     price: string;
     location: string;
-    type: 'venta' | 'alquiler'; // Solo permite estos dos valores
+    type: 'venta' | 'alquiler';
+    category: 'casa' | 'departamento' | 'terreno' | 'local' | 'galpon'| 'cochera';
     bedrooms: number;
     bathrooms: number;
     area: number;

@@ -1,19 +1,54 @@
-    // components/sections/HeroSection.tsx
-    "use client"
+// components/sections/HeroSection.tsx
+"use client"
 
-    import Image from "next/image";
-    import { Button } from "@/components/ui/button";
-    import { Input } from "@/components/ui/input";
-    import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-    import { Search } from "lucide-react";
+import { useState, useEffect } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Search } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-    // Definimos los props que este componente necesita recibir
-    type HeroProps = {
-    isClient: boolean;
-    isDesktop: boolean;
+// El hook ahora vive aquí adentro, o puede estar en su propio archivo e importarse
+    function useMediaQuery(query: string) {
+    const [matches, setMatches] = useState(false);
+    useEffect(() => {
+        const media = window.matchMedia(query);
+        if (media.matches !== matches) {
+        setMatches(media.matches);
+        }
+        const listener = () => setMatches(media.matches);
+        window.addEventListener('resize', listener);
+        return () => window.removeEventListener('resize', listener);
+    }, [matches, query]);
+    return matches;
+    }
+
+    // El componente ya no necesita recibir props
+    export default function HeroSection() {
+    // La lógica para detectar el dispositivo ahora vive aquí
+    const isDesktop = useMediaQuery('(min-width: 768px)');
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
+
+    // Lógica de la barra de búsqueda
+    const [tipo, setTipo] = useState("");
+    const [operacion, setOperacion] = useState("");
+    const [zona, setZona] = useState("");
+    const [precioMax, setPrecioMax] = useState("");
+    const router = useRouter();
+    const handleSearch = () => {
+        const queryParams = new URLSearchParams();
+        if (tipo) queryParams.set("tipo", tipo);
+        if (operacion) queryParams.set("operacion", operacion);
+        if (zona) queryParams.set("zona", zona);
+        if (precioMax) queryParams.set("precioMax", precioMax);
+        router.push(`/propiedades?${queryParams.toString()}`);
     };
 
-    export default function HeroSection({ isClient, isDesktop }: HeroProps) {
     return (
         
     <section id="inicio" className="relative bg-gradient-to-r from-gray-700 to-gray-500 text-white min-h-screen flex items-center overflow-hidden">
@@ -58,52 +93,47 @@
         </p>
 
     {/* Search Bar */}
-    <div className="bg-white rounded-lg p-6 shadow-xl max-w-4xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-        <Select>
-            <SelectTrigger className="text-black">
-            <SelectValue placeholder="Tipo de propiedad" />
-            </SelectTrigger>
-            <SelectContent>
+<div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 md:p-6 shadow-2xl max-w-4xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+        <Select onValueChange={setTipo}>
+        <SelectTrigger className="text-black"><SelectValue placeholder="Tipo de propiedad" /></SelectTrigger>
+        <SelectContent>
             <SelectItem value="casa">Casa</SelectItem>
             <SelectItem value="departamento">Departamento</SelectItem>
             <SelectItem value="terreno">Terreno</SelectItem>
             <SelectItem value="local">Local Comercial</SelectItem>
-            </SelectContent>
+        </SelectContent>
         </Select>
-
-        <Select>
-            <SelectTrigger className="text-black">
-            <SelectValue placeholder="¿Querés comprar o alquilar?" />
-            </SelectTrigger>
-            <SelectContent>
+        <Select onValueChange={setOperacion}>
+        <SelectTrigger className="text-black"><SelectValue placeholder="Operación" /></SelectTrigger>
+        <SelectContent>
             <SelectItem value="venta">Venta</SelectItem>
             <SelectItem value="alquiler">Alquiler</SelectItem>
-            </SelectContent>
+        </SelectContent>
         </Select>
-
-        <Select>
-            <SelectTrigger className="text-black">
-            <SelectValue placeholder="¿En qué zona de Rosario?" />
-            </SelectTrigger>
-            <SelectContent>
+        <Select onValueChange={setZona}>
+        <SelectTrigger className="text-black"><SelectValue placeholder="Zona" /></SelectTrigger>
+        <SelectContent>
             <SelectItem value="centro">Centro</SelectItem>
             <SelectItem value="pichincha">Pichincha</SelectItem>
             <SelectItem value="fisherton">Fisherton</SelectItem>
             <SelectItem value="funes">Funes</SelectItem>
             <SelectItem value="roldan">Roldán</SelectItem>
-            </SelectContent>
+        </SelectContent>
         </Select>
-
-        <Input placeholder="Ej: $150.000 - Precio máximo" className="text-gray-900" />
-        </div>
-        <Button className="w-full bg-[#3B4D5B] hover:bg-[#4F6372] text-lg py-3">
-        <Search className="h-5 w-5 mr-2" />
-        Buscar Propiedades
-        </Button>
+        <Input 
+        placeholder="Precio máximo" 
+        className="text-gray-900" 
+        value={precioMax}
+        onChange={(e) => setPrecioMax(e.target.value)}
+        />
     </div>
+    <Button onClick={handleSearch} className="w-full bg-[#3B4D5B] hover:bg-[#2c3a47] text-lg py-3 h-auto">
+        <Search className="h-5 w-5 mr-2" />Buscar Propiedades
+    </Button>
     </div>
-    </div>
-    </section>
+</div>
+</div>
+</section>
         );
     }

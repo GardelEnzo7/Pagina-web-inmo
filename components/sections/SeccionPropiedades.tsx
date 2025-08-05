@@ -143,10 +143,10 @@ import type { Propiedad } from '@/types';
                 </Button>
             ) : (
                 // Si ya se mostraron todas, se muestra el botón para ir a la página de propiedades
-                <Link href="#" passHref>
-                <Button size="lg" variant="outline">
-                    Ver Todas las Propiedades
-                </Button>
+                <Link href="/propiedades" passHref>
+                    <Button size="lg" variant="outline">
+                        Ver Todas las Propiedades
+                    </Button>
                 </Link>
             )}
             </div>
