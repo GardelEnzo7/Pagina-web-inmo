@@ -26,7 +26,7 @@ export default function ContactSection() {
             <div className="container mx-auto px-4">
             <div className="text-center mb-12">
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Contactanos</h2>
-                <p className="text-xl text-gray-600">Estamos aquí para ayudarte con todas tus necesidades inmobiliarias</p>
+                <p className="text-xl text-gray-600">¿Tenés alguna consulta? Dejanos tu mensaje y te contactaremos a la brevedad.</p>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

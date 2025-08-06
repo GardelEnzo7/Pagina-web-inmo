@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { Filter, MapPin, Bed, Bath, Square, Heart, Share2 } from "lucide-react";
 import { todasLasPropiedades } from '@/data/propiedades';
 import type { Propiedad } from '@/types';
+import PropertyCard from '@/components/cards/PropertyCard';
 
 
     export default function SeccionPropiedades() {
@@ -96,41 +97,7 @@ import type { Propiedad } from '@/types';
             {/* --- Grilla de Propiedades Filtradas --- */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {propiedadesFiltradas.slice(0, propiedadesVisibles).map((prop) => (
-                <Card key={prop.id} className="overflow-hidden hover:shadow-xl transition-shadow duration-300">
-                <div className="relative">
-                    <Image
-                    src={prop.image}
-                    alt={prop.title}
-                    width={400}
-                    height={250}
-                    className="w-full h-64 object-cover"
-                    />
-                    <Badge className={`absolute top-4 left-4 ${prop.type === 'venta' ? 'bg-green-600' : 'bg-orange-600'}`}>
-                    {prop.type.charAt(0).toUpperCase() + prop.type.slice(1)}
-                    </Badge>
-                    <div className="absolute top-4 right-4 flex space-x-2">
-                    <Button size="icon" variant="secondary" className="rounded-full h-8 w-8"><Heart className="h-4 w-4" /></Button>
-                    <Button size="icon" variant="secondary" className="rounded-full h-8 w-8"><Share2 className="h-4 w-4" /></Button>
-                    </div>
-                </div>
-                <CardContent className="p-6">
-                    <div className="flex justify-between items-start mb-3">
-                    <h3 className="text-xl font-semibold text-gray-900">{prop.title}</h3>
-                    <div className="text-2xl font-bold text-[#3B4D5B]">{prop.price}</div>
-                    </div>
-                    <div className="flex items-center text-gray-600 mb-3">
-                    <MapPin className="h-4 w-4 mr-1" />
-                    <span className="text-sm">{prop.location}</span>
-                    </div>
-                    <div className="flex items-center space-x-4 text-gray-600 mb-4">
-                    <div className="flex items-center"><Bed className="h-4 w-4 mr-1" /><span className="text-sm">{prop.bedrooms} dorm</span></div>
-                    <div className="flex items-center"><Bath className="h-4 w-4 mr-1" /><span className="text-sm">{prop.bathrooms} baños</span></div>
-                    <div className="flex items-center"><Square className="h-4 w-4 mr-1" /><span className="text-sm">{prop.area} m²</span></div>
-                    </div>
-                    <p className="text-gray-600 text-sm mb-4 h-10">{prop.description}</p>
-                    <Button className="w-full bg-[#3B4D5B] hover:bg-[#2c3a47]">Ver Detalles</Button>
-                </CardContent>
-                </Card>
+                <PropertyCard key={prop.id} property={prop} />
             ))}
             </div>
 

@@ -75,7 +75,7 @@
                 </div>
                 <h3 className="text-xl font-semibold mb-3">Tasaciones</h3>
                 <p className="text-gray-600">
-                    Valuaciones precisas y actualizadas de propiedades realizadas por profesionales certificados.
+                    Valuaciones precisas y actualizadas con sus respectivos informes.
                 </p>
                 </Card>
 
@@ -83,9 +83,9 @@
                 <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                     <FileText className="h-8 w-8 text-[#4F6372]-600" />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Asesoramiento Legal</h3>
+                <h3 className="text-xl font-semibold mb-3">Asesoramiento Inmobiliario</h3>
                 <p className="text-gray-600">
-                    Soporte legal completo para todas las operaciones inmobiliarias y trámites documentales.
+                    Contamos con todas las herramientas para brindarte el asesoramiento que necesites.
                 </p>
                 </Card>
 
@@ -103,9 +103,9 @@
                 <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Users className="h-8 w-8 text-[#4F6372]-600 " />
                 </div>
-                <h3 className="text-xl font-semibold mb-3">Administración</h3>
+                <h3 className="text-xl font-semibold mb-3">Administración de Propiedades</h3>
                 <p className="text-gray-600">
-                    Administración integral de propiedades, consorcios y gestión de inquilinos.
+                    Administración integral de alquileres.
                 </p>
                 </Card>
             </div>

@@ -75,7 +75,7 @@ const getHeaderClasses = () => {
         <main>{children}</main> {/* children es el contenido de cada página */}
         
         <Footer />
-        <WhatsAppFloatButton isScrolled={isScrolled} />
+        {/*<WhatsAppFloatButton isScrolled={isScrolled} />*/}
       </body>
     </html>
   );

@@ -31,10 +31,7 @@ export default function SellRentSection() {
                 <h2 className="text-3xl md:text-4xl font-bold mb-6">
                     ¿Querés vender o alquilar tu propiedad?
                 </h2>
-                <p className="text-xl mb-8 text-slate-200">
-                    Te ayudamos a obtener el mejor precio y encontrar los inquilinos
-                    ideales para tu propiedad
-                </p>
+                <br />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                     <div className="text-center">
                     <div className="bg-[#4F6372] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -48,14 +45,14 @@ export default function SellRentSection() {
                         <TrendingUp className="h-8 w-8" />
                     </div>
                     <h3 className="text-lg font-semibold mb-2">Marketing Efectivo</h3>
-                    <p className="text-slate-200">Promoción en todos los canales</p>
+                    <p className="text-slate-200">Difusión en los portales inmobiliarios más consultados</p>
                     </div>
                     <div className="text-center">
                     <div className="bg-[#4F6372] w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
                         <Users className="h-8 w-8" />
                     </div>
                     <h3 className="text-lg font-semibold mb-2">Acompañamiento Total</h3>
-                    <p className="text-slate-200">Te guiamos en todo el proceso</p>
+                    <p className="text-slate-200">Te asesoramos y acompañamos en todo el proceso</p>
                     </div>
                 </div>
                 <Button
