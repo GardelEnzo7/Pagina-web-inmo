@@ -21,6 +21,9 @@ export default function PaginaPropiedades() {
     });
 
     const [propiedadesFiltradas, setPropiedadesFiltradas] = useState<Propiedad[]>([]);
+    const [tipoPopoverOpen, setTipoPopoverOpen] = useState(false);
+    const [operacionPopoverOpen, setOperacionPopoverOpen] = useState(false);
+    const [zonaPopoverOpen, setZonaPopoverOpen] = useState(false);
 
     const handleFilterChange = (filtro: string, valor: string) => {
         setFiltros(prevFiltros => ({
@@ -51,11 +54,11 @@ export default function PaginaPropiedades() {
 
     return (
         // Fondo general gris claro para toda la página
-        <div className="bg-slate-100">      
-        <main className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
+<div className="bg-slate-100">      
+    <main className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
             
             {/* --- ESTE ES EL NUEVO DIV "BURBUJA" --- */}
-            <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg">
+        <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg">
             
             {/* --- ENCABEZADO DENTRO DE LA BURBUJA --- */}
             <div className="mb-8">
@@ -66,14 +69,14 @@ export default function PaginaPropiedades() {
             </div>
 
             {/* --- ESTRUCTURA PRINCIPAL (FILTROS + RESULTADOS) --- */}
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
+    <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
                 {/* --- COLUMNA IZQUIERDA: FILTROS --- */}
-                <aside className="lg:col-span-1 self-start lg:sticky lg:top-28 bg-[#3B4D5B] rounded-md p-7 ">
+        <aside className="lg:col-span-1 self-start lg:sticky lg:top-28 bg-[#3B4D5B] rounded-md p-7 ">
                 <h3 className="text-xl font-bold mb-6 text-[#f4f4f4]">Filtros</h3>
                 <div className="space-y-6">
                 <div>
                 <label className="block text-sm font-medium mb-2 text-gray-300">Tipo de Propiedad</label>
-                <Popover modal={false}>
+                <Popover open={tipoPopoverOpen} onOpenChange={setTipoPopoverOpen} modal={false}>
                     <PopoverTrigger asChild>
                     <Button variant="outline" className="w-full justify-between border-gray-600 text-black">
                         {filtros.tipo === 'todos' ? 'Todos los tipos' : filtros.tipo.charAt(0).toUpperCase() + filtros.tipo.slice(1)}
@@ -83,12 +86,12 @@ export default function PaginaPropiedades() {
                     <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
                     <Command>
                         <CommandGroup>
-                        <CommandItem onSelect={() => handleFilterChange('tipo', 'todos')}>Todos los tipos</CommandItem>
-                        <CommandItem onSelect={() => handleFilterChange('tipo', 'casa')}>Casa</CommandItem>
-                        <CommandItem onSelect={() => handleFilterChange('tipo', 'departamento')}>Departamento</CommandItem>
-                        <CommandItem onSelect={() => handleFilterChange('tipo', 'terreno')}>Terreno</CommandItem>
-                        <CommandItem onSelect={() => handleFilterChange('tipo', 'cochera')}>Cochera</CommandItem>
-                        <CommandItem onSelect={() => handleFilterChange('tipo', 'galpon')}>Galpón / Depósito</CommandItem>
+                        <CommandItem onSelect={() => {handleFilterChange('tipo', 'todos'); setTipoPopoverOpen(false);}}> Todos los tipos </CommandItem>
+                        <CommandItem onSelect={() => {handleFilterChange('tipo', 'casa'); setTipoPopoverOpen(false);}}>Casa</CommandItem>
+                        <CommandItem onSelect={() => {handleFilterChange('tipo', 'departamento'); setTipoPopoverOpen(false);}}>Departamento</CommandItem>
+                        <CommandItem onSelect={() => {handleFilterChange('tipo', 'terreno'); setTipoPopoverOpen(false);}}>Terreno</CommandItem>
+                        <CommandItem onSelect={() => {handleFilterChange('tipo', 'cochera'); setTipoPopoverOpen(false);}}>Cochera</CommandItem>
+                        <CommandItem onSelect={() => {handleFilterChange('tipo', 'galpon'); setTipoPopoverOpen(false);}}>Galpón / Depósito</CommandItem>
                         </CommandGroup>
                     </Command>
                     </PopoverContent>
@@ -97,7 +100,7 @@ export default function PaginaPropiedades() {
 
                 <div>
                 <label className="block text-sm font-medium mb-2 text-gray-300">Operación</label>
-                <Popover modal={false}>
+                <Popover open={operacionPopoverOpen} onOpenChange={setOperacionPopoverOpen} modal={false}>
                     <PopoverTrigger asChild>
                     <Button variant="outline" className="w-full justify-between  border-gray-600 text-black">
                         {filtros.operacion === 'todos' ? 'Venta y Alquiler' : filtros.operacion.charAt(0).toUpperCase() + filtros.operacion.slice(1)}
@@ -107,38 +110,38 @@ export default function PaginaPropiedades() {
                     <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
                     <Command>
                         <CommandGroup>
-                        <CommandItem onSelect={() => handleFilterChange('operacion', 'todos')}>Venta y Alquiler</CommandItem>
-                        <CommandItem onSelect={() => handleFilterChange('operacion', 'venta')}>Venta</CommandItem>
-                        <CommandItem onSelect={() => handleFilterChange('operacion', 'alquiler')}>Alquiler</CommandItem>
+                        <CommandItem onSelect={() => {handleFilterChange('operacion', 'todos'); setOperacionPopoverOpen(false);}}>Venta y Alquiler</CommandItem>
+                        <CommandItem onSelect={() => {handleFilterChange('operacion', 'venta'); setOperacionPopoverOpen(false);}}>Venta</CommandItem>
+                        <CommandItem onSelect={() => {handleFilterChange('operacion', 'alquiler'); setOperacionPopoverOpen(false);}}>Alquiler</CommandItem>
                         </CommandGroup>
                     </Command>
                     </PopoverContent>
                 </Popover>
                 </div>
 
-                <div>
+            <div>
                 <label className="block text-sm font-medium mb-2 text-gray-300">Zona</label>
-                <Popover modal={false}>
-                    <PopoverTrigger asChild>
-                    <Button variant="outline" className="w-full justify-between border-gray-600 text-black">
-                        {filtros.zona === 'todos' ? 'Todas las zonas' : filtros.zona.charAt(0).toUpperCase() + filtros.zona.slice(1)}
-                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                    </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
-                    <Command>
-                        <CommandGroup>
-                        <CommandItem onSelect={() => handleFilterChange('zona', 'todos')}>Todas las zonas</CommandItem>
-                        <CommandItem onSelect={() => handleFilterChange('zona', 'centro')}>Centro</CommandItem>
-                        <CommandItem onSelect={() => handleFilterChange('zona', 'pichincha')}>Pichincha</CommandItem>
-                        <CommandItem onSelect={() => handleFilterChange('zona', 'fisherton')}>Fisherton</CommandItem>
-                        <CommandItem onSelect={() => handleFilterChange('zona', 'funes')}>Funes</CommandItem>
-                        <CommandItem onSelect={() => handleFilterChange('zona', 'roldan')}>Roldán</CommandItem>
-                        </CommandGroup>
-                    </Command>
-                    </PopoverContent>
-                </Popover>
-                </div>
+                    <Popover open={zonaPopoverOpen} onOpenChange={setZonaPopoverOpen} modal={false}>
+                        <PopoverTrigger asChild>
+                        <Button variant="outline" className="w-full justify-between border-gray-600 text-black">
+                            {filtros.zona === 'todos' ? 'Todas las zonas' : filtros.zona.charAt(0).toUpperCase() + filtros.zona.slice(1)}
+                            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                        </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+                        <Command>
+                            <CommandGroup>
+                            <CommandItem onSelect={() => {handleFilterChange('zona', 'todos'); setZonaPopoverOpen(false);}}>Todas las zonas</CommandItem>
+                            <CommandItem onSelect={() => {handleFilterChange('zona', 'centro'); setZonaPopoverOpen(false);}}>Centro</CommandItem>
+                            <CommandItem onSelect={() => {handleFilterChange('zona', 'pichincha'); setZonaPopoverOpen(false);}}>Pichincha</CommandItem>
+                            <CommandItem onSelect={() => {handleFilterChange('zona', 'fisherton'); setZonaPopoverOpen(false);}}>Fisherton</CommandItem>
+                            <CommandItem onSelect={() => {handleFilterChange('zona', 'funes'); setZonaPopoverOpen(false);}}>Funes</CommandItem>
+                            <CommandItem onSelect={() => {handleFilterChange('zona', 'roldan'); setZonaPopoverOpen(false);}}>Roldán</CommandItem>
+                            </CommandGroup>
+                        </Command>
+                        </PopoverContent>
+                    </Popover>
+            </div>
                         
                         <Button 
                         onClick={handleClearFilters} 
@@ -147,7 +150,7 @@ export default function PaginaPropiedades() {
                         Limpiar Filtros
                         </Button>
                 </div>
-                </aside>
+        </aside>
             
                 {/* --- COLUMNA DERECHA: RESULTADOS --- */}
                 <div className="lg:col-span-3">
@@ -165,9 +168,9 @@ export default function PaginaPropiedades() {
                     </div>
                 )}
                 </div>
-            </div>
-            </div>
-        </main>
         </div>
+        </div>
+    </main>
+</div>
     );
     }
