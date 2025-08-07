@@ -4,9 +4,15 @@ import { useState, useEffect } from "react";
 import Header from '@/components/shared/Header';
 import Footer from '@/components/shared/Footer';
 import MobileMenu from '@/components/shared/MobileMenu';
-import WhatsAppFloatButton from "@/components/shared/WhatsAppFloatButton";
+import { Montserrat } from 'next/font/google';
 import "./globals.css";
 import { usePathname } from 'next/navigation';
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  weight: ['400', '500', '700'], // Normal, Medium y Bold
+  variable: '--font-montserrat',
+});
 
 function useMediaQuery(query: string) {
   const [matches, setMatches] = useState(false);
@@ -53,9 +59,11 @@ const getHeaderClasses = () => {
     return isScrolled ? `${base} bg-[#3B4D5B]/70 backdrop-blur-sm shadow-md` : `${base} bg-[#3B4D5B]/90 backdrop-blur-md shadow-md`;
   }
 };
+
+
   
   return (
-    <html lang="es" className={`scroll-smooth`}>
+    <html lang="es" className={`${montserrat.variable} scroll-smooth`}>
       <head>
         {/* Aquí van etiquetas globales como links a fuentes, etc. */}
         <title>Laura Senmache - Negocios Inmobiliarios</title>
@@ -68,14 +76,12 @@ const getHeaderClasses = () => {
           setShowFullNav={setShowFullNav}
           isMobileMenuOpen={isMobileMenuOpen}
           setIsMobileMenuOpen={setIsMobileMenuOpen}
-          getHeaderClasses={getHeaderClasses}
         />
         <MobileMenu isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
         
         <main>{children}</main> {/* children es el contenido de cada página */}
         
         <Footer />
-        {/*<WhatsAppFloatButton isScrolled={isScrolled} />*/}
       </body>
     </html>
   );

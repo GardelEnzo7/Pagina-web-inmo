@@ -86,14 +86,16 @@ import { useRouter } from "next/navigation";
     <div className="container mx-auto px-4 relative z-20 py-20">
     <div className="max-w-4xl mx-auto text-center">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
-        Encuentra tu hogar ideal en <span className="font-bold bg-gradient-to-r from-gray-400 to-gray-100 bg-clip-text text-transparent">Rosario</span>
+        Encuentra tu hogar ideal en Rosario
         </h1>
-        <p className="text-xl md:text-2xl mb-8 text-blue-100">
+        <br />
+        <br />
+        {/* <p className="text-xl md:text-2xl mb-8 text-blue-100">
         Más de 15 años conectando familias con sus hogares soñados en Rosario y alrededores
-        </p>
+        </p> */}
 
     {/* Search Bar */}
-<div className="bg-white/90 backdrop-blur-sm rounded-lg p-4 md:p-6 shadow-2xl max-w-4xl mx-auto">
+<div className="bg-white/90 backdrop-blur-sm rounded-xl p-4 md:p-6 shadow-2xl max-w-4xl mx-auto">
     <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
         <Select onValueChange={setTipo}>
         <SelectTrigger className="text-black"><SelectValue placeholder="Tipo de propiedad" /></SelectTrigger>

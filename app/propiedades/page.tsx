@@ -1,6 +1,5 @@
 "use client";
 
-// --- IMPORTS ---
 import { useState, useEffect } from "react";
 import { useSearchParams } from 'next/navigation';
 import { todasLasPropiedades } from '@/data/propiedades';
@@ -8,11 +7,12 @@ import type { Propiedad } from '@/types';
 import PropertyCard from '@/components/cards/PropertyCard';
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { SearchX } from "lucide-react";
+import { SearchX, ChevronsUpDown } from "lucide-react";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { Command, CommandGroup, CommandItem } from "@/components/ui/command";
 
 export default function PaginaPropiedades() {
     
-    // --- LÓGICA DE FILTROS ---
     const searchParams = useSearchParams();
     const [filtros, setFiltros] = useState({
         tipo: searchParams.get('tipo') || 'todos',
@@ -52,7 +52,7 @@ export default function PaginaPropiedades() {
     return (
         // Fondo general gris claro para toda la página
         <div className="bg-slate-100">      
-        <main className="container mx-auto px-4 pt-32 pb-16">
+        <main className="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-16">
             
             {/* --- ESTE ES EL NUEVO DIV "BURBUJA" --- */}
             <div className="bg-white p-6 md:p-8 rounded-xl shadow-lg">
@@ -66,60 +66,79 @@ export default function PaginaPropiedades() {
             </div>
 
             {/* --- ESTRUCTURA PRINCIPAL (FILTROS + RESULTADOS) --- */}
-            <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-                
+            <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
                 {/* --- COLUMNA IZQUIERDA: FILTROS --- */}
-                <aside className="lg:col-span-1 self-start sticky top-28 bg-gray-600 rounded-md p-7">
+                <aside className="lg:col-span-1 self-start lg:sticky lg:top-28 bg-[#3B4D5B] rounded-md p-7 ">
                 <h3 className="text-xl font-bold mb-6 text-[#f4f4f4]">Filtros</h3>
                 <div className="space-y-6">
-                    <div>
-                        <label className="block text-sm font-medium mb-2 text-gray-300">Tipo de Propiedad</label>
-                        {/* Para los Select, necesitamos darles un estilo oscuro customizado */}
-                        <Select value={filtros.tipo} onValueChange={(valor) => handleFilterChange('tipo', valor)}>
-                            <SelectTrigger className="bg-[#f4f4f4] border-gray-600 text-black">
-                            <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent className="bg-[#f4f4f4] border-gray-600 text-white">
-                            <SelectItem value="todos">Todos los tipos</SelectItem>
-                            <SelectItem value="casa">Casa</SelectItem>
-                            <SelectItem value="departamento">Departamento</SelectItem>
-                            <SelectItem value="terreno">Terreno</SelectItem>
-                            <SelectItem value="cochera">Cochera</SelectItem>
-                            <SelectItem value="galpon">Galpón / Depósito</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        </div>
+                <div>
+                <label className="block text-sm font-medium mb-2 text-gray-300">Tipo de Propiedad</label>
+                <Popover modal={false}>
+                    <PopoverTrigger asChild>
+                    <Button variant="outline" className="w-full justify-between border-gray-600 text-black">
+                        {filtros.tipo === 'todos' ? 'Todos los tipos' : filtros.tipo.charAt(0).toUpperCase() + filtros.tipo.slice(1)}
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+                    <Command>
+                        <CommandGroup>
+                        <CommandItem onSelect={() => handleFilterChange('tipo', 'todos')}>Todos los tipos</CommandItem>
+                        <CommandItem onSelect={() => handleFilterChange('tipo', 'casa')}>Casa</CommandItem>
+                        <CommandItem onSelect={() => handleFilterChange('tipo', 'departamento')}>Departamento</CommandItem>
+                        <CommandItem onSelect={() => handleFilterChange('tipo', 'terreno')}>Terreno</CommandItem>
+                        <CommandItem onSelect={() => handleFilterChange('tipo', 'cochera')}>Cochera</CommandItem>
+                        <CommandItem onSelect={() => handleFilterChange('tipo', 'galpon')}>Galpón / Depósito</CommandItem>
+                        </CommandGroup>
+                    </Command>
+                    </PopoverContent>
+                </Popover>
+                </div>
 
-                        <div>
-                        <label className="block text-sm font-medium mb-2 text-gray-300">Operación</label>
-                        <Select value={filtros.operacion} onValueChange={(valor) => handleFilterChange('operacion', valor)}>
-                            <SelectTrigger className="bg-[#f4f4f4] border-gray-600 text-black">
-                            <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent className="bg-[#f4f4f4] border-gray-600 text-black">
-                            <SelectItem value="todos">Venta y Alquiler</SelectItem>
-                            <SelectItem value="venta">Venta</SelectItem>
-                            <SelectItem value="alquiler">Alquiler</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        </div>
+                <div>
+                <label className="block text-sm font-medium mb-2 text-gray-300">Operación</label>
+                <Popover modal={false}>
+                    <PopoverTrigger asChild>
+                    <Button variant="outline" className="w-full justify-between  border-gray-600 text-black">
+                        {filtros.operacion === 'todos' ? 'Venta y Alquiler' : filtros.operacion.charAt(0).toUpperCase() + filtros.operacion.slice(1)}
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+                    <Command>
+                        <CommandGroup>
+                        <CommandItem onSelect={() => handleFilterChange('operacion', 'todos')}>Venta y Alquiler</CommandItem>
+                        <CommandItem onSelect={() => handleFilterChange('operacion', 'venta')}>Venta</CommandItem>
+                        <CommandItem onSelect={() => handleFilterChange('operacion', 'alquiler')}>Alquiler</CommandItem>
+                        </CommandGroup>
+                    </Command>
+                    </PopoverContent>
+                </Popover>
+                </div>
 
-                        <div>
-                        <label className="block text-sm font-medium mb-2 text-gray-300">Zona</label>
-                        <Select value={filtros.zona} onValueChange={(valor) => handleFilterChange('zona', valor)}>
-                            <SelectTrigger className="bg-[#4F6372] border-gray-600 text-white">
-                            <SelectValue />
-                            </SelectTrigger>
-                            <SelectContent className="bg-[#4F6372] border-gray-600 text-white">
-                            <SelectItem value="todos">Todas las zonas</SelectItem>
-                            <SelectItem value="centro">Centro</SelectItem>
-                            <SelectItem value="pichincha">Pichincha</SelectItem>
-                            <SelectItem value="fisherton">Fisherton</SelectItem>
-                            <SelectItem value="funes">Funes</SelectItem>
-                            <SelectItem value="roldan">Roldán</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        </div>
+                <div>
+                <label className="block text-sm font-medium mb-2 text-gray-300">Zona</label>
+                <Popover modal={false}>
+                    <PopoverTrigger asChild>
+                    <Button variant="outline" className="w-full justify-between border-gray-600 text-black">
+                        {filtros.zona === 'todos' ? 'Todas las zonas' : filtros.zona.charAt(0).toUpperCase() + filtros.zona.slice(1)}
+                        <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-[--radix-popover-trigger-width] p-0">
+                    <Command>
+                        <CommandGroup>
+                        <CommandItem onSelect={() => handleFilterChange('zona', 'todos')}>Todas las zonas</CommandItem>
+                        <CommandItem onSelect={() => handleFilterChange('zona', 'centro')}>Centro</CommandItem>
+                        <CommandItem onSelect={() => handleFilterChange('zona', 'pichincha')}>Pichincha</CommandItem>
+                        <CommandItem onSelect={() => handleFilterChange('zona', 'fisherton')}>Fisherton</CommandItem>
+                        <CommandItem onSelect={() => handleFilterChange('zona', 'funes')}>Funes</CommandItem>
+                        <CommandItem onSelect={() => handleFilterChange('zona', 'roldan')}>Roldán</CommandItem>
+                        </CommandGroup>
+                    </Command>
+                    </PopoverContent>
+                </Popover>
+                </div>
                         
                         <Button 
                         onClick={handleClearFilters} 
@@ -147,7 +166,7 @@ export default function PaginaPropiedades() {
                 )}
                 </div>
             </div>
-            </div> {/* --- FIN DEL DIV "BURBUJA" --- */}
+            </div>
         </main>
         </div>
     );

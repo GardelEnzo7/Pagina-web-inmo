@@ -51,7 +51,7 @@ export default function ContactSection() {
                     <Mail className="h-6 w-6 text-[#4F6372]-600 mr-4 mt-1" />
                     <div>
                         <h4 className="font-semibold">Email</h4>
-                        <p className="text-gray-600">info@inmobiliariarosario.com</p>
+                        <p className="text-gray-600">Inmobiliariasenmache@gmail.com</p>
                     </div>
                     </div>
                     <div className="flex items-start">

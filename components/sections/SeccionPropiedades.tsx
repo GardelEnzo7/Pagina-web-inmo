@@ -56,10 +56,10 @@ import PropertyCard from '@/components/cards/PropertyCard';
 
             {/* --- Contenedor de Botones con Fondo Deslizante --- */}
             <div className="flex justify-center mb-8">
-            <div ref={tabsContainerRef} className="relative flex items-center space-x-2 bg-gray-100 rounded-lg p-1">
+            <div ref={tabsContainerRef} className="relative flex items-center bg-gray-100 rounded-full p-1">
                 {/* Fondo Deslizante */}
                 <span
-                className="absolute top-1 bottom-1 bg-[#3B4D5B] rounded-md shadow-sm transition-all duration-300 ease-in-out"
+                className="absolute top-1 bottom-1 bg-[#3B4D5B] rounded-full shadow-sm transition-all duration-300 ease-in-out"
                 style={sliderStyle}
                 />
 
@@ -69,7 +69,7 @@ import PropertyCard from '@/components/cards/PropertyCard';
                 onClick={() => setFiltroActivo("todas")}
                 variant={null}
                 size="sm"
-                className={`relative z-10 transition-colors duration-300 w-20 ${ filtroActivo === 'todas' ? 'text-white' : 'text-gray-500 hover:text-gray-900'}`}
+                className={`relative z-10 transition-colors duration-300 px-6 ${filtroActivo === 'todas' ? 'text-white' : 'text-gray-500 hover:text-gray-900'}`}
                 >
                 Todas
                 </Button>
@@ -78,7 +78,7 @@ import PropertyCard from '@/components/cards/PropertyCard';
                 onClick={() => setFiltroActivo("venta")}
                 variant={null}
                 size="sm"
-                className={`relative z-10 transition-colors duration-300 w-20 ${ filtroActivo === 'venta' ? 'text-white' : 'text-gray-500 hover:text-gray-900'}`}
+                className={`relative z-10 transition-colors duration-300 px-6 ${filtroActivo === 'venta' ? 'text-white' : 'text-gray-500 hover:text-gray-900'}`}
                 >
                 Venta
                 </Button>
@@ -87,7 +87,7 @@ import PropertyCard from '@/components/cards/PropertyCard';
                 onClick={() => setFiltroActivo("alquiler")}
                 variant={null}
                 size="sm"
-                className={`relative z-10 transition-colors duration-300 w-20 ${ filtroActivo === 'alquiler' ? 'text-white' : 'text-gray-500 hover:text-gray-900'}`}
+                className={`relative z-10 transition-colors duration-300 px-6 ${filtroActivo === 'alquiler' ? 'text-white' : 'text-gray-500 hover:text-gray-900'}`}
                 >
                 Alquiler
                 </Button>

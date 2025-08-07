@@ -12,22 +12,30 @@ type HeaderProps = {
     setShowFullNav: (isShow: boolean) => void;
     isMobileMenuOpen: boolean;
     setIsMobileMenuOpen: (isOpen: boolean) => void;
-    getHeaderClasses: () => string;
 };
 
-export default function Header({ isMobileMenuOpen, setIsMobileMenuOpen }: HeaderProps) {
+export default function Header({isScrolled,showFullNav ,setShowFullNav, isMobileMenuOpen, setIsMobileMenuOpen }: HeaderProps) {
 return (
     <>
         {/* --- HEADER DESKTOP: LA PÍLDORA FLOTANTE --- */}
-        <header className="hidden md:flex fixed top-4 left-0 right-0 z-50 justify-center">
-            <div
-            className="
-                flex items-center justify-between gap-44
-                px-4 py-2                               
-                bg-[#3B4D5B]/70 backdrop-blur-lg hover:bg-[#3B4D5B] transition-all rounded-full shadow-lg
-                border border-white/10
-            "
-            >
+        <header className="hidden md:flex fixed top-4 left-0 right-0 z-50 justify-center
+                onMouseEnter={() => setShowFullNav(true)}
+                onMouseLeave={() => setShowFullNav(false)}">
+        <div
+                className={`
+                    flex items-center justify-between gap-10
+                    px-3 py-2
+                    rounded-full shadow-lg border border-white/10
+                    transition-all duration-300 ease-in-out
+                    hover:bg-[#3B4D5B]
+                    ${
+                    // APLICAMOS LA LÓGICA AQUÍ
+                    (isScrolled && !showFullNav)
+                        ? 'bg-[#3B4D5B]/50 backdrop-blur-md  w-[1000px]' // Estilo "encogido" al hacer scroll
+                        : 'bg-[#3B4D5B] w-[1000px]' // Estilo "expandido" arriba o con hover
+                    }
+                `}
+                >
             {/* 1. Logo */}
             <Link href="/" className="flex items-center space-x-3 flex-shrink-0 pl-2">
                 <Image src="/logo.webp" alt="Laura Senmache Logo" width={40} height={40} className="h-12 w-12 object-contain" />

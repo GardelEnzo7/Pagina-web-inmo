@@ -2,9 +2,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Building2, Facebook, Instagram, Mail, MessageCircle, Phone, Sun, UtensilsCrossed, Waves, Home, Building, Key, Calculator, FileText, TrendingUp, MapPin, Navigation } from "lucide-react";
+import { FlagTriangleLeft, Facebook, Instagram, Mail, MessageCircle, Phone, Building2, Key, Calculator, FileText, TrendingUp, MapPin, Navigation } from "lucide-react";
 
-// Agregamos 'export default' para que se pueda importar
 export default function Footer() {
     return (
         <footer className="bg-[#3B4D5B] text-white py-12">
@@ -64,7 +63,7 @@ export default function Footer() {
                     <li>
                     
                     <Link href="#" className="hover:text-white transition-colors">
-                        <Building className="h-5 w-5 text-[#4F6372]-600 inline-block mr-1" /> Compra y Venta
+                        <Building2 className="h-5 w-5 text-[#4F6372]-600 inline-block mr-1" /> Compra y Venta
                     </Link>
                     </li>
                     <li>
@@ -79,12 +78,12 @@ export default function Footer() {
                     </li>
                     <li>
                     <Link href="#" className="hover:text-white transition-colors">
-                        <FileText className="h-5 w-5 text-[#4F6372]-600 inline-block mr-2" />Asesoramiento Legal
+                        <FileText className="h-5 w-5 text-[#4F6372]-600 inline-block mr-2" />Asesoramiento Inmobiliario
                     </Link>
                     </li>
                     <li>
                     <Link href="#" className="hover:text-white transition-colors">
-                        <TrendingUp className="h-5 w-5 inline-block mr-2" />Inversiones
+                        <TrendingUp className="h-5 w-5 inline-block mr-2" />Marketing Efectivo
                     </Link>
                     </li>
                 </ul>
@@ -95,28 +94,28 @@ export default function Footer() {
                 <ul className="space-y-2 text-gray-300 bg-[#455c6d] p-4 rounded-md">
                     <li>
                     <Link href="#" className="hover:text-white transition-colors">
-                        <Building2 className="h-5 w-5 inline-block mr-2" />Centro
+                        <FlagTriangleLeft className="h-5 w-5 inline-block mr-2" />Centro
                     </Link>
                     </li>
                     <li>
                     <Link href="#" className="hover:text-white transition-colors">
-                        <UtensilsCrossed className="h-5 w-5 inline-block mr-2" />Pichincha
+                        <FlagTriangleLeft className="h-5 w-5 inline-block mr-2" />Pichincha
                     </Link>
                     </li>
                     <li>
                     <Link href="#" className="hover:text-white transition-colors">
-                        <Home className="h-5 w-5 inline-block mr-2" />Fisherton
+                        <FlagTriangleLeft className="h-5 w-5 inline-block mr-2" />Fisherton
                     </Link>
                     </li>
                     <li>
                     <Link href="#" className="hover:text-white transition-colors">
-                        <Sun className="h-5 w-5 inline-block mr-2" />Funes
+                        <FlagTriangleLeft className="h-5 w-5 inline-block mr-2" />Funes
                     </Link>
                     </li>
                     <li>
                     <Link href="#" className="hover:text-white transition-colors">
-                        <Waves className="h-5 w-5 inline-block mr-2" />Roldán
-                    </Link>
+                        <FlagTriangleLeft className="h-5 w-5 inline-block mr-2" />Roldán 
+                    </Link> 
                     </li>
                 </ul>
                 </div>
@@ -146,7 +145,7 @@ export default function Footer() {
             </div>
 
             <div className="border-t border-gray-800 mt-8 pt-8 text-center text-white">
-                <p>&copy; 2024 Laura Senmache Negocios Inmobiliarios. Todos los derechos reservados.</p>
+                <p>&copy; 2025 Laura Senmache Negocios Inmobiliarios. Todos los derechos reservados.</p>
             </div>
             </div>
         </footer>
