@@ -14,28 +14,23 @@ import ContactSection from '@/components/sections/ContactSection';
 export default function PaginaDeInicio() {
       return (
             <div className="min-h-screen bg-white">
-            <Head>
-                  <link rel="preload" as="image" href="/videos/video-desktop.webm" />
-                  <link rel="preload" as="image" href="/poster-mobile.webp" />
-            </Head>
+                  {/*Hero Section*/}
+            <HeroSection />
 
-      {/*Hero Section*/}
-<HeroSection />
+                  {/*Stats Section
+            <StatsSection />*/}
 
-      {/*Stats Section
-<StatsSection />*/}
+                  {/* Seccion Propiedades */}
+            <SeccionPropiedades/>
 
-      {/* Seccion Propiedades */}
-<SeccionPropiedades/>
+                  {/* Services Section */}
+            <ServicesSection/>
 
-      {/* Services Section */}
-<ServicesSection/>
+                  {/* Sell/Rent Section */}
+            <SellRentSection />
 
-      {/* Sell/Rent Section */}
-<SellRentSection />
-
-      {/* Contact Section */}
-<ContactSection />
+                  {/* Contact Section */}
+            <ContactSection />
 
       </div>
       )

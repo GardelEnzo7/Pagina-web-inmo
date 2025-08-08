@@ -144,10 +144,10 @@ export default function PaginaPropiedades() {
             </div>
                         
                         <Button 
-                        onClick={handleClearFilters} 
-                        className="w-full bg-white/10 text-white hover:bg-white/20 border border-white/20"
-                        >
-                        Limpiar Filtros
+                            onClick={handleClearFilters} 
+                            className="w-full bg-white/10 text-white hover:bg-white/20 border border-white/20"
+                            >
+                            Limpiar Filtros
                         </Button>
                 </div>
         </aside>

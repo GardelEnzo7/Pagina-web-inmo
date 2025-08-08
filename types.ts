@@ -8,6 +8,6 @@ export type Propiedad = {
     bedrooms: number;
     bathrooms: number;
     area: number;
-    image: string;
+    images: string[];
     description: string;
 };
